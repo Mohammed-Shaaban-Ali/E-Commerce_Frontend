@@ -1,5 +1,5 @@
-import React from "react";
-import newsletter from "../images/newsletter.png";
+import "./Footer.css";
+import newsletter from "../../images/newsletter.png";
 import { Link } from "react-router-dom";
 import { BsGithub, BsInstagram, BsLinkedin, BsYoutube } from "react-icons/bs";
 
