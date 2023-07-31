@@ -13,7 +13,7 @@ const Categories = () => {
         <div className="row">
           <div className="col-12">
             <div className="categories d-flex flex-wrap justify-content-center align-items-center">
-              <div className="d-flex gap-30 align-items-center justify-content-evenly">
+              <div className="d-flex gap-30 align-items-center justify-content-between">
                 <div className="">
                   <h6>Cameras & Videos</h6>
                   <p>10 Items</p>
@@ -21,7 +21,7 @@ const Categories = () => {
                 <img src={camera} alt="camera" />
               </div>
 
-              <div className="d-flex gap-30 align-items-center justify-content-evenly">
+              <div className="d-flex gap-30 align-items-center justify-content-between">
                 <div className="">
                   <h6>Smart Tv</h6>
                   <p>12 Items</p>
@@ -29,7 +29,7 @@ const Categories = () => {
                 <img src={tv} alt="tv" />
               </div>
 
-              <div className="d-flex gap-30 align-items-center justify-content-evenly">
+              <div className="d-flex gap-30 align-items-center justify-content-between">
                 <div className="">
                   <h6>Computers & Laptop</h6>
                   <p>6 Items</p>
@@ -37,7 +37,7 @@ const Categories = () => {
                 <img src={laptop} alt="laptop" />
               </div>
 
-              <div className="d-flex gap-30 align-items-center justify-content-evenly">
+              <div className="d-flex gap-30 align-items-center justify-content-between">
                 <div className="">
                   <h6>Accessories</h6>
                   <p>8 Items</p>
@@ -45,7 +45,7 @@ const Categories = () => {
                 <img src={headphone} alt="headphone" />
               </div>
 
-              <div className="d-flex gap-30 align-items-center justify-content-evenly">
+              <div className="d-flex gap-30 align-items-center justify-content-between">
                 <div className="">
                   <h6>Portable Speakers</h6>
                   <p>8 Items</p>
@@ -53,7 +53,7 @@ const Categories = () => {
                 <img src={acc} alt="acc" />
               </div>
 
-              <div className="d-flex gap-30 align-items-center justify-content-evenly">
+              <div className="d-flex gap-30 align-items-center justify-content-between">
                 <div className="">
                   <h6>Home Appliances</h6>
                   <p>6 Items</p>
@@ -61,7 +61,7 @@ const Categories = () => {
                 <img src={homeapp} alt="homeapp" />
               </div>
 
-              <div className="d-flex gap-30 align-items-center justify-content-evenly">
+              <div className="d-flex gap-30 align-items-center justify-content-between">
                 <div className="">
                   <h6>Portable Speaker</h6>
                   <p>8 Items</p>
@@ -69,7 +69,7 @@ const Categories = () => {
                 <img src={speaker} alt="speaker" />
               </div>
 
-              <div className="d-flex gap-30 align-items-center justify-content-evenly">
+              <div className="d-flex gap-30 align-items-center justify-content-between">
                 <div className="">
                   <h6>Portable Speakers</h6>
                   <p>8 Items</p>

@@ -101,10 +101,11 @@
 
 .categories>div {
     width: 24%;
+    padding: 10px;
 }
 
 .categories>div>div {
-    padding: 10px;
+    width: 60%
 }
 
 .categories>div>div>p {
@@ -125,6 +126,45 @@
 .categories>div:nth-child(6),
 .categories>div:nth-child(7) {
     border-right: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.cart>div {
+    flex-direction: column;
+    background: white;
+    box-shadow: 0 0 10px #0000001a;
+    width: 310px;
+    padding: 30px 15px;
+    border-radius: 16px;
+    transition: all 0.5s ease;
+
+}
+
+
+.cart .active {
+    background-color: var(--color-131921) !important;
+
+    transform: scale(1.03);
+}
+
+.active>div>h6 {
+    color: white;
+}
+
+.cart>div>img {
+    width: 250px;
+}
+
+.cart>div>div>h6 {
+    margin-top: 7px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+.cart>div>div>p {
+    color: gray;
+    margin-bottom: 0;
+    font-size: 14px;
 }
 
 /*End Home */
