@@ -142,7 +142,6 @@
 
 .cart .active {
     background-color: var(--color-131921) !important;
-
     transform: scale(1.03);
 }
 
@@ -166,5 +165,27 @@
     margin-bottom: 0;
     font-size: 14px;
 }
+
+.marque-wrapper {
+    background-color: var(--color-f5f5f7);
+}
+
+.marque-wrapper .container-xxl {
+    background-color: white;
+    box-shadow: 0 0 10px #0000001a;
+}
+
+.marque-wrapper .d-flex {
+    gap: 70px;
+}
+
+.marque-wrapper .d-flex img {
+    width: 130px;
+}
+
+.marque-wrapper .d-flex img:last-child {
+    margin-right: 70px;
+}
+
 
 /*End Home */
