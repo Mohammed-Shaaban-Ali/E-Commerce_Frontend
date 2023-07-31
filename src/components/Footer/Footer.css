@@ -1,0 +1,42 @@
+/* Footer */
+footer {
+    background-color: var(--color-232f3e);
+}
+
+footer:not(:first-child) {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-group.input-group .Subscribe {
+    background-color: var(--color-232f3e);
+    color: white;
+    cursor: pointer;
+
+}
+
+.input-group.input-group .Subscribe:hover {
+    background-color: var(--color-3b4149);
+
+}
+
+.footer-link a {
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.footer-link a:hover {
+    color: white !important;
+}
+
+.footer-link .social-icons svg {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.footer-link .social-icons svg:hover {
+    color: white;
+}
+
+/*End Footer */
