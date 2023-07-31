@@ -3,7 +3,7 @@ import cart2 from "../../images/cart2.png";
 import cart3 from "../../images/cart3.png";
 import cart4 from "../../images/cart4.png";
 
-const Carts = () => {
+const Cards = () => {
   return (
     <section className="home-wrapper-2 py-5">
       <div className="container-xxl ">
@@ -53,4 +53,4 @@ const Carts = () => {
   );
 };
 
-export default Carts;
+export default Cards;

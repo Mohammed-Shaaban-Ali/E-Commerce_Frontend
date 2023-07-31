@@ -2,8 +2,9 @@ import "../components/Home/Home.css";
 import Banner from "../components/Home/Banner";
 import Servies from "../components/Home/Servies";
 import Categories from "../components/Home/Categories";
-import Carts from "../components/Home/Carts";
+import Cards from "../components/Home/Cards";
 import Marque from "../components/Home/Marque";
+import Blog from "../components/Home/Blog";
 
 const Home = () => {
   return (
@@ -11,8 +12,9 @@ const Home = () => {
       <Banner />
       <Servies />
       <Categories />
-      <Carts />
+      <Cards />
       <Marque />
+      <Blog />
     </>
   );
 };
