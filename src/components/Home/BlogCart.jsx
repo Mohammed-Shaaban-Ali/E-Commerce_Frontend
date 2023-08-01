@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom";
 import blog1 from "../../images/blog-1.jpg";
-// import blog2 from "../../images/blog-2.jpg";
-// import blog3 from "../../images/blog-3.jpg";
-// import blog4 from "../../images/blog-4.jpg";
 
 const BlogCart = () => {
   return (
