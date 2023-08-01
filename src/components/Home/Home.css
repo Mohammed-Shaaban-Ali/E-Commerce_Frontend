@@ -188,7 +188,8 @@
 }
 
 .blog h6,
-.products h6 {
+.products h6,
+.featured-wrapper h6 {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 25px;
@@ -260,8 +261,6 @@
     display: block;
 }
 
-
-
 .product-contant {
     padding: 16px;
 }
@@ -295,6 +294,83 @@
 .wishlist-icon {
     top: 2%;
     right: 4%;
+}
+
+.spacial-product-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0000001a;
+    padding: 15px;
+}
+
+.spacial-product-card .badge {
+    background-color: var(--color-fc353c);
+    padding: 10px 13px;
+}
+
+
+.spacial-product-card h5 {
+    color: var(--color-bf4800);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.spacial-product-card h6 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.spacial-product-card p {
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+.spacial-product-card p span {
+    color: var(--color-fc353c);
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.spacial-product-card p strike {
+    color: gray;
+    font-weight: 400;
+}
+
+
+.spacial-product-card .discount-till p {
+    color: gray;
+    font-size: 14px;
+    margin-right: 4px;
+}
+
+.spacial-product-card .discount-till p b {
+    color: black;
+    font-size: 18px;
+    margin-right: 4px;
+}
+
+.spacial-product-card .product-count p {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: gray;
+}
+
+.progress,
+.progress-stacked {
+    --bs-progress-height: 0.5rem;
+    --bs-progress-font-size: 0.75rem;
+    --bs-progress-bg: var(--bs-secondary-bg);
+    --bs-progress-border-radius: var(--bs-border-radius);
+    --bs-progress-box-shadow: var(--bs-box-shadow-inset);
+    --bs-progress-bar-color: #fff;
+    --bs-progress-bar-bg: rgb(38, 177, 38);
+    --bs-progress-bar-transition: width 0.6s ease;
+    display: flex;
+    height: var(--bs-progress-height);
+    overflow: hidden;
+    font-size: var(--bs-progress-font-size);
+    background-color: var(--bs-progress-bg);
+    border-radius: var(--bs-progress-border-radius);
 }
 
 /*End Home */

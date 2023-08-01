@@ -6,6 +6,7 @@ import Cards from "../components/Home/Cards";
 import Marque from "../components/Home/Marque";
 import Blog from "../components/Home/Blog";
 import Features from "../components/Home/Features";
+import SpecialWrapper from "../components/Home/SpecialWrapper";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <Categories />
       <Features />
       <Cards />
+      <SpecialWrapper />
       <Marque />
       <Blog />
     </>
