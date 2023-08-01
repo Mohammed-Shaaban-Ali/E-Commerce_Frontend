@@ -6,7 +6,7 @@ import prodcompare from "../../images/prodcompare.svg";
 import view from "../../images/view.svg";
 import addcart from "../../images/add-cart.svg";
 import wish from "../../images/wish.svg";
-import cart1 from "../../images/cart1.png";
+import watch2 from "../../images/watch2.png";
 
 const CardProducts = () => {
   return (
@@ -19,7 +19,7 @@ const CardProducts = () => {
         </div>
         <div className="product-image">
           <img src={watch} alt="watch" />
-          <img src={cart1} alt="cart1" />
+          <img src={watch2} alt="watch2" />
         </div>
         <div className="product-contant">
           <h6>Havels</h6>

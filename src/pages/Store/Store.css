@@ -1,0 +1,86 @@
+.filter-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 15px;
+    box-shadow: 0 0 10px #0000001a;
+}
+
+.filter-card h5 {
+    margin-bottom: 20px;
+}
+
+.filter-card div a {
+    color: gray;
+    transition: all 0.3s ease;
+}
+
+.filter-card>div {
+    padding: 10px;
+}
+
+.filter-card div a:hover {
+    color: black;
+    font-weight: bold;
+}
+
+.form-check-input:checked {
+    background-color: var(--color-febd69);
+    border-color: var(--color-febd69);
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+    border-color: none;
+}
+
+.form-control {
+    font-size: 14px;
+    box-shadow: none;
+
+}
+
+.form-control:focus {
+    border-color: none;
+}
+
+.colors {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.colors li {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border-radius: 50px;
+}
+
+.product-tag-span {
+    padding: 4px 12px;
+    color: gray;
+    background-color: rgba(128, 128, 128, 0.2);
+    width: fit-content;
+    border-radius: 5px;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.product-tag-span:hover {
+    transform: scale(1.1);
+}
+
+.product:not(:last-child) {
+    border-bottom: 2px solid rgba(128, 128, 128, 0.364);
+}
+
+.product:not(:first-child) {
+    margin-top: 16px;
+}
+
+.product div h6 {
+    margin-bottom: 0px;
+    font-size: 14px;
+}
