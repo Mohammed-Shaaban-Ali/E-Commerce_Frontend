@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import blog1 from "../../images/blog-1.jpg";
 
 const BlogCart = () => {
+  const { pathname } = useLocation();
+
   return (
-    <div className="col-3">
+    <div className={pathname === "/blogs" ? "col-6 mb-4" : "col-3"}>
       <div className="blog-card">
         <div className="blog-image">
           <img src={blog1} alt="blog1" />

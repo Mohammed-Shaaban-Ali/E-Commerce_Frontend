@@ -34,7 +34,7 @@ const MainStore = () => {
                 src={gr4}
                 alt="gr1"
                 className={
-                  grid == 3 ? "d-block active img-fluid" : "d-block  img-fluid"
+                  grid === 3 ? "d-block active img-fluid" : "d-block  img-fluid"
                 }
                 onClick={() => setgrid(3)}
               />
@@ -42,7 +42,7 @@ const MainStore = () => {
                 src={gr3}
                 alt="gr1"
                 className={
-                  grid == 4 ? "d-block active img-fluid" : "d-block  img-fluid"
+                  grid === 4 ? "d-block active img-fluid" : "d-block  img-fluid"
                 }
                 onClick={() => setgrid(4)}
               />
@@ -50,7 +50,7 @@ const MainStore = () => {
                 src={gr2}
                 alt="gr1"
                 className={
-                  grid == 6 ? "d-block active img-fluid" : "d-block  img-fluid"
+                  grid === 6 ? "d-block active img-fluid" : "d-block  img-fluid"
                 }
                 onClick={() => setgrid(6)}
               />
@@ -58,7 +58,9 @@ const MainStore = () => {
                 src={gr1}
                 alt="gr1"
                 className={
-                  grid == 12 ? "d-block active img-fluid" : "d-block  img-fluid"
+                  grid === 12
+                    ? "d-block active img-fluid"
+                    : "d-block  img-fluid"
                 }
                 onClick={() => setgrid(12)}
               />
