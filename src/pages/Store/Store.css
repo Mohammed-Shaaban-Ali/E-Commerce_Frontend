@@ -84,3 +84,54 @@
     margin-bottom: 0px;
     font-size: 14px;
 }
+
+.filter-sort-grid {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.filter-sort-grid>div>div>p {
+    color: rgb(104, 104, 104);
+    width: 100px;
+}
+
+.filter-sort-grid>div>div .form-select {
+    background-color: rgba(128, 128, 128, 0.1);
+    color: gray;
+}
+
+.form-control:focus {
+    border-color: transparent;
+}
+
+
+.grid img {
+    width: 24px;
+    height: 24px;
+    background-color: #f2f2f2f2;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.full-h5 {
+    font-size: 24px !important;
+}
+
+.full-p {
+    font-size: 14px !important;
+    color: rgb(150, 149, 149);
+    margin: 10px 0;
+}
+
+.full-icon:first-child {
+    margin-top: 16px;
+}
+
+.grid .active,
+.grid img:hover {
+    background-color: rgb(237, 224, 141);
+
+}

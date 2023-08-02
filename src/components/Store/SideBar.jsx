@@ -142,7 +142,7 @@ const SideBar = () => {
                 count={5}
                 onChange={() => {}}
                 value={3}
-                edit={false}
+                edit={true}
                 size={24}
                 activeColor="#ffd700"
               />
