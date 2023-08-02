@@ -1,5 +1,6 @@
 import BreadCrumb from "../../components/BreadCrumb";
 import SEO from "../../components/SEO";
+import MainStore from "../../components/Store/MainStore";
 import SideBar from "../../components/Store/SideBar";
 import "./Store.css";
 
@@ -12,6 +13,7 @@ const Store = () => {
         <div className="container-xxl">
           <div className="row">
             <SideBar />
+            <MainStore />
           </div>
         </div>
       </div>

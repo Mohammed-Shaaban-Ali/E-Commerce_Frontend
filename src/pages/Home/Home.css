@@ -240,6 +240,8 @@
 
 .product-card:hover .action-bar {
     right: 4%;
+    opacity: 1;
+    z-index: 100;
 }
 
 .product-image img {
@@ -289,10 +291,14 @@
 .action-bar {
     top: 12%;
     right: -23%;
+    opacity: 0;
     transition: all 0.3s;
+    z-index: -100;
 }
 
-
+.action-bar>div:last-child {
+    margin-top: 14px;
+}
 
 .wishlist-icon {
     top: 2%;
