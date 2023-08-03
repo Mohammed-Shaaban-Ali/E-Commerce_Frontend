@@ -48,7 +48,7 @@ const HeaderCenter = () => {
 
               <div>
                 <Link
-                  to="/wish-list"
+                  to="/wishlist"
                   className="d-flex align-items-center gap-10 text-white"
                 >
                   <img src={wishlist} alt="wishlist" />
