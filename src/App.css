@@ -49,11 +49,28 @@ a {
     color: rgba(255, 255, 255, 0.795);
     border-radius: 25px;
     transition: all 0.3s ease-in-out;
+    border: none;
 }
 
 .button:hover {
     background-color: var(--color-febd69);
     color: var(--color-232f3e);
+}
+
+.button2 {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 7px 21px;
+    background-color: var(--color-febd69);
+    color: var(--color-232f3e);
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.button2:hover {
+    background-color: var(--color-3b4149);
+    color: rgba(255, 255, 255, 0.795);
 }
 
 .home-wrapper-2 {

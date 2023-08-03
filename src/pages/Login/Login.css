@@ -1,0 +1,45 @@
+.login-wrapper {
+    overflow-x: hidden;
+}
+
+.login-card {
+    width: 500px;
+    padding: 20px;
+    background-color: white;
+    margin: 64px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 16px;
+}
+
+.login-card h3 {
+    text-align: center;
+    color: gray;
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-card .form-control {
+    background-color: rgba(227, 227, 227, 0.288);
+    outline: none;
+    border: none;
+}
+
+.login-card .form-control::placeholder {
+    color: gray;
+}
+
+.login-card a {
+    color: rgba(0, 0, 0, 0.86);
+    font-weight: 500;
+}
+
+.lohin-btn {
+    margin: auto;
+    margin-bottom: 24px;
+}
