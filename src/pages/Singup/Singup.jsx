@@ -1,19 +1,18 @@
-import "./Login.css";
+import "./Singup.css";
 
 import SEO from "../../components/SEO";
 import BreadCrumb from "../../components/BreadCrumb";
-import { Link } from "react-router-dom";
 
-const Login = () => {
+const Singup = () => {
   return (
     <>
-      <SEO title="Login" />
-      <BreadCrumb title="Login" />
+      <SEO title="Sign Up" />
+      <BreadCrumb title="Sing Up" />
       <div className="login-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
             <div className="login-card">
-              <h3>Log in</h3>
+              <h3>Sing Up</h3>
               <form>
                 <div className="">
                   <input
@@ -31,15 +30,9 @@ const Login = () => {
                     className="form-control"
                   />
                 </div>
-                <div className="">
-                  <Link to="/forgot-password">Forgot your password?</Link>
-                </div>
 
                 <div className="lohin-btn d-flex gap-30 align-items-center">
-                  <button className="button">Login</button>
-                  <Link to="/singup" className="button2">
-                    Sign Up
-                  </Link>
+                  <button className="button2">Sign Up</button>
                 </div>
               </form>
             </div>
@@ -50,4 +43,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Singup;

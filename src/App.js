@@ -10,6 +10,8 @@ import Blogs from "./pages/Blogs/Blogs";
 import CopmareProduct from "./pages/CopmareProduct/CopmareProduct";
 import WishList from "./pages/WishList/WishList";
 import Login from "./pages/Login/Login";
+import Singup from "./pages/Singup/Singup";
+import ForgotPassword from "./pages/forgot-password/ForgotPassword";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
             <Route path="compare-products" element={<CopmareProduct />} />
             <Route path="wishlist" element={<WishList />} />
             <Route path="login" element={<Login />} />
+            <Route path="singup" element={<Singup />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
           </Route>
         </Routes>
       </BrowserRouter>
