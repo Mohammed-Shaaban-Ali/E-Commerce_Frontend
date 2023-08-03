@@ -18,7 +18,7 @@ const ResetPassword = () => {
                   <input
                     type="password"
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
                     className="form-control"
                   />
                 </div>
