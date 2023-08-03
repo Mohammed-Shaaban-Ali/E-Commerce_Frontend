@@ -1,0 +1,53 @@
+.mab {
+    width: 100%;
+    height: 500px;
+}
+
+.contact-wrapper {
+    background-color: white;
+    box-shadow: 0 0 10px #0000001a;
+    padding: 30px 30px;
+    gap: 50px;
+
+}
+
+.contact-wrapper div {
+    width: 49%;
+}
+
+.contact-wrapper h3 {
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+
+.contact-wrapper div form {
+    width: 100%;
+}
+
+.contact-wrapper div form div {
+    width: 100%;
+}
+
+.contact-wrapper div form .form-control {
+    background-color: #eeeeeec4;
+    font-size: 16px;
+}
+
+.contact-wrapper div div {
+    width: 100%;
+}
+
+.icon p,
+.icon svg {
+    margin-bottom: 0;
+    color: gray;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.icon:hover p,
+.icon:hover svg {
+    color: black;
+}
