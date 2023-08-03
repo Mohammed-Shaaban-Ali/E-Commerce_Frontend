@@ -1,0 +1,68 @@
+.compare-prosuct-card {
+    padding: 20px 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0000001a;
+    margin: 10px 0;
+}
+
+.compare-prosuct-croos>img {
+    top: 15px;
+    right: 15px;
+    width: 25px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.product-card-contant a {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 15px;
+    transition: 0.3s;
+}
+
+.product-card-contant a:hover {
+    text-decoration: underline;
+}
+
+.product-card-contant h6 {
+    font-weight: bold;
+}
+
+.info {
+    transition: 0.2s;
+    border-top: 2px solid rgba(128, 128, 128, 0.2);
+}
+
+.info:hover {
+    border-radius: 8px;
+    background-color: rgba(255, 222, 161, 0.4);
+}
+
+.info p,
+.color-list {
+    color: gray;
+    margin: 16px 0;
+}
+
+.color-list span {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.color-list span:hover {
+    opacity: 1;
+}
+
+.color-list span:first-child {
+    background-color: blueviolet;
+}
+
+.color-list span:last-child {
+    background-color: rgb(43, 226, 64);
+}
