@@ -1,0 +1,77 @@
+.singe-blog-card h6 {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.singe-blog-contant p {
+    color: gray;
+    margin-bottom: 8px;
+}
+
+.singe-blog-image {
+    width: 100%;
+    height: 100%;
+}
+
+.singe-blog-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.singe-blog-contant p:last-child {
+    color: rgb(88, 88, 88);
+    font-size: 18px;
+}
+
+.social .back {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    font-size: 20px;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.404);
+    transition: 0.3s;
+}
+
+.social .back a {
+    transition: 0.3s;
+    color: rgba(0, 0, 0, 0.404);
+}
+
+.social .back:hover a,
+.social .back:hover {
+    color: black;
+}
+
+.social .social-icon {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    font-size: 20px;
+}
+
+.comment {
+    background: white;
+    box-shadow: 0 0 10px #0000001a;
+    padding: 16px 32px;
+}
+
+.comment h3 {
+    color: gray;
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.comment form>div div {
+    width: 49%;
+}
+
+.comment form input,
+.comment form textarea {
+    width: 100%;
+    background-color: rgba(246, 242, 242, 0.5);
+    color: gray;
+    border: none;
+}

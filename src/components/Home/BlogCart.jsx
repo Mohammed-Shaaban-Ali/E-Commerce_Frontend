@@ -17,7 +17,9 @@ const BlogCart = () => {
             You`re Only Good As Your Last Collection. Which is An Enormous
             Pressure. I Think is SomeThing ...
           </p>
-          <Link className="button">READ MORE</Link>
+          <Link to="/blog/:id" className="button">
+            READ MORE
+          </Link>
         </div>
       </div>
     </div>
