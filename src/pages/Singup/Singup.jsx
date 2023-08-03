@@ -12,8 +12,24 @@ const Singup = () => {
         <div className="row">
           <div className="col-12">
             <div className="login-card">
-              <h3>Sing Up</h3>
+              <h3>Create Account</h3>
               <form>
+                <div className="">
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    className="form-control"
+                  />
+                </div>
+                <div className="">
+                  <input
+                    type="text"
+                    name="lasttName"
+                    placeholder="Lastt Name"
+                    className="form-control"
+                  />
+                </div>
                 <div className="">
                   <input
                     type="email"
@@ -31,8 +47,8 @@ const Singup = () => {
                   />
                 </div>
 
-                <div className="lohin-btn d-flex gap-30 align-items-center">
-                  <button className="button2">Sign Up</button>
+                <div className="lohin-btn d-flex gap-15 mb-1 flex-column align-items-center">
+                  <button className="button">Create</button>
                 </div>
               </form>
             </div>
