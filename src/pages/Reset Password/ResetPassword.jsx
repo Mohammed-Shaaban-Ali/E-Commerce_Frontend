@@ -13,7 +13,6 @@ const ResetPassword = () => {
           <div className="col-12">
             <div className="login-card">
               <h3 className="mb-0">Reset Password</h3>
-
               <form>
                 <div className="">
                   <input
