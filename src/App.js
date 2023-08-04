@@ -29,7 +29,8 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="blogs" element={<Blogs />} />
             <Route path="blog/:id" element={<BlogsPageDetails />} />
-            <Route path="store" element={<Store />} />
+            <Route path="products" element={<Store />} />
+            <Route path="product/:id" element={<Store />} />
             <Route path="contact" element={<Contact />} />
             <Route path="compare-products" element={<CopmareProduct />} />
             <Route path="wishlist" element={<WishList />} />

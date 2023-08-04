@@ -11,12 +11,12 @@ import watch2 from "../../images/watch2.png";
 const CardProducts = ({ grid }) => {
   const { pathname } = useLocation();
   return (
-    <div className={pathname === "/store" ? `col-${grid} ` : "col-2 mb-3"}>
+    <div className={pathname === "/products" ? `col-${grid} ` : "col-2 mb-3"}>
       <div
         className={
           grid === 6 || grid === 12
             ? `d-flex product-card m-2 mt-4 `
-            : pathname === "/store"
+            : pathname === "/products"
             ? " product-card m-2 mt-4"
             : "product-card  "
         }
@@ -34,7 +34,7 @@ const CardProducts = ({ grid }) => {
           <div className="action-bar position-absolute">
             <div
               className={
-                pathname === "/store"
+                pathname === "/products"
                   ? `full-icon d-flex flex-column gap-15`
                   : "d-flex flex-column gap-15"
               }
