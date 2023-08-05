@@ -1,16 +1,37 @@
-import { useState } from "react";
 import BreadCrumb from "../../components/BreadCrumb";
 import Features from "../../components/Home/Features";
 import SEO from "../../components/SEO";
 import ReactStars from "react-rating-stars-component";
-import ReactImageMagnify from "react-image-magnify";
-import watch from "../../images/watch.jpg";
+import { GlassMagnifier } from "react-image-magnifiers";
+import product1 from "../../images/product1.png";
+import product2 from "../../images/product2.png";
+import product3 from "../../images/product3.png";
+import product4 from "../../images/product4.png";
 import { BsHeart } from "react-icons/bs";
 import { TbGitCompare } from "react-icons/tb";
+import { LiaShippingFastSolid } from "react-icons/lia";
+import { LiaRulerSolid } from "react-icons/lia";
+import { SiMaterialdesignicons } from "react-icons/si";
+import { Accordion } from "react-bootstrap";
+
+import React, { useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
+// import required modules
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
 const SingleProductPage = () => {
   const [oprderProduct, setOprderProduct] = useState(true);
   const [reviweForm, setreviweForm] = useState(false);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
   return (
     <>
       <SEO title="Product Name" />
@@ -21,22 +42,89 @@ const SingleProductPage = () => {
           <div className="bg-white">
             <div className="row">
               <div className="col-6">
-                <div className="">
-                  <ReactImageMagnify
-                    {...{
-                      smallImage: {
-                        alt: "Wristwatch by Ted Baker London",
-                        isFluidWidth: true,
-                        src: watch,
-                      },
-                      largeImage: {
-                        src: watch,
-                        width: 2200,
-                        height: 2200,
-                      },
-                    }}
-                  />
-                </div>
+                <Swiper
+                  style={{
+                    "--swiper-navigation-color": "#121212",
+                    "--swiper-pagination-color": "#121212",
+                  }}
+                  spaceBetween={10}
+                  navigation={true}
+                  thumbs={{ swiper: thumbsSwiper }}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className="mySwiper2"
+                >
+                  <div>
+                    <SwiperSlide>
+                      <GlassMagnifier
+                        allowOverflow={true}
+                        magnifierBorderColor="black"
+                        magnifierSize="250px"
+                        square={false}
+                        imageSrc={product1}
+                        imageAlt="Example"
+                        largeImageSrc={product1} // Optional
+                      />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                      <GlassMagnifier
+                        magnifierBorderColor="black"
+                        allowOverflow={true}
+                        magnifierSize="250px"
+                        square={false}
+                        imageSrc={product2}
+                        imageAlt="Example"
+                        largeImageSrc={product2} // Optional
+                      />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                      <GlassMagnifier
+                        magnifierBorderColor="black"
+                        allowOverflow={true}
+                        magnifierSize="250px"
+                        square={false}
+                        imageSrc={product3}
+                        imageAlt="Example"
+                        largeImageSrc={product3} // Optional
+                      />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                      <GlassMagnifier
+                        magnifierBorderColor="black"
+                        allowOverflow={true}
+                        magnifierSize="250px"
+                        square={false}
+                        imageSrc={product4}
+                        imageAlt="Example"
+                        largeImageSrc={product4} // Optional
+                      />
+                    </SwiperSlide>
+                  </div>
+                </Swiper>
+                <Swiper
+                  onSwiper={setThumbsSwiper}
+                  spaceBetween={10}
+                  slidesPerView={4}
+                  freeMode={true}
+                  watchSlidesProgress={true}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className="mySwiper"
+                >
+                  <SwiperSlide>
+                    <img src={product1} className="image-small img-fluid" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img src={product2} className="image-small img-fluid" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img src={product3} className="image-small img-fluid" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img src={product4} className="image-small img-fluid" />
+                  </SwiperSlide>
+                </Swiper>
               </div>
               <div className="col-6">
                 <div className="main-product-details d-flex flex-column gap-10">
@@ -127,6 +215,76 @@ const SingleProductPage = () => {
                         <p className="mb-0">Add to compare</p>
                       </div>
                     </div>
+                  </div>
+                  <div className="mb-3">
+                    <Accordion defaultActiveKey="0">
+                      <Accordion.Item eventKey="0">
+                        <Accordion.Header>
+                          <div className="d-flex gap-10">
+                            <LiaShippingFastSolid />
+                            Shipping & Returns
+                          </div>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat. Duis aute irure dolor in
+                          reprehenderit in voluptate velit esse cillum dolore eu
+                          fugiat nulla pariatur. Excepteur sint occaecat
+                          cupidatat non proident, sunt in culpa qui officia
+                          deserunt mollit anim id est laborum.
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="1">
+                        <Accordion.Header>
+                          <div className="d-flex gap-10">
+                            <SiMaterialdesignicons />
+                            Materials
+                          </div>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat. Duis aute irure dolor in
+                          reprehenderit in voluptate velit esse cillum dolore eu
+                          fugiat nulla pariatur. Excepteur sint occaecat
+                          cupidatat non proident, sunt in culpa qui officia
+                          deserunt mollit anim id est laborum.
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="2">
+                        <Accordion.Header>
+                          <div className="d-flex gap-10">
+                            <LiaRulerSolid />
+                            Dimensions
+                          </div>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="3">
+                        <Accordion.Header>
+                          <div className="d-flex gap-10">
+                            <BsHeart />
+                            Care Instructions
+                          </div>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
                   </div>
                 </div>
               </div>
