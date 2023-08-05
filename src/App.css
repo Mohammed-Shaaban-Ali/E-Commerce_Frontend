@@ -80,3 +80,7 @@ a {
 .breadcrumb {
     background-color: white;
 }
+
+.form-control:focus {
+    background-color: #f4f4f4;
+}
