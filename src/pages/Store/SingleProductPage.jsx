@@ -113,16 +113,32 @@ const SingleProductPage = () => {
                   className="mySwiper"
                 >
                   <SwiperSlide>
-                    <img src={product1} className="image-small img-fluid" />
+                    <img
+                      alt="product"
+                      src={product1}
+                      className="image-small img-fluid"
+                    />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src={product2} className="image-small img-fluid" />
+                    <img
+                      alt="product"
+                      src={product2}
+                      className="image-small img-fluid"
+                    />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src={product3} className="image-small img-fluid" />
+                    <img
+                      alt="product"
+                      src={product3}
+                      className="image-small img-fluid"
+                    />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src={product4} className="image-small img-fluid" />
+                    <img
+                      alt="product"
+                      src={product4}
+                      className="image-small img-fluid"
+                    />
                   </SwiperSlide>
                 </Swiper>
               </div>
