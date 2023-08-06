@@ -54,7 +54,7 @@ const SingleProductPage = () => {
                   className="mySwiper2"
                 >
                   <div>
-                    <SwiperSlide>
+                    <SwiperSlide className="p-5">
                       <GlassMagnifier
                         allowOverflow={true}
                         magnifierBorderColor="black"
@@ -66,7 +66,7 @@ const SingleProductPage = () => {
                       />
                     </SwiperSlide>
 
-                    <SwiperSlide>
+                    <SwiperSlide className="p-5">
                       <GlassMagnifier
                         magnifierBorderColor="black"
                         allowOverflow={true}
@@ -78,7 +78,7 @@ const SingleProductPage = () => {
                       />
                     </SwiperSlide>
 
-                    <SwiperSlide>
+                    <SwiperSlide className="p-5">
                       <GlassMagnifier
                         magnifierBorderColor="black"
                         allowOverflow={true}
@@ -90,7 +90,7 @@ const SingleProductPage = () => {
                       />
                     </SwiperSlide>
 
-                    <SwiperSlide>
+                    <SwiperSlide className="p-5">
                       <GlassMagnifier
                         magnifierBorderColor="black"
                         allowOverflow={true}

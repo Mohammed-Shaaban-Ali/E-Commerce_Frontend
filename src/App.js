@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home/Home";
-import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Store from "./pages/Store/Store";
 import Blogs from "./pages/Blogs/Blogs";
@@ -19,6 +18,8 @@ import RefundPolicy from "./pages/RefundPolicy";
 import ShippingPolicy from "./pages/ShippingPolicy";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import SingleProductPage from "./pages/Store/SingleProductPage";
+import Cart from "./pages/Cart/Cart";
+import CheckOut from "./pages/Cart/CheckOut";
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<CheckOut />} />
             <Route path="blogs" element={<Blogs />} />
             <Route path="blog/:id" element={<BlogsPageDetails />} />
             <Route path="products" element={<Store />} />
