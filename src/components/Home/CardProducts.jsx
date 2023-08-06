@@ -11,7 +11,10 @@ import watch2 from "../../images/watch2.png";
 const CardProducts = ({ grid }) => {
   const { pathname } = useLocation();
   return (
-    <div className={pathname === "/products" ? `col-${grid} ` : "col-2 mb-3"}>
+    <Link
+      to="/product/assa"
+      className={pathname === "/products" ? `col-${grid} ` : "col-2 mb-3"}
+    >
       <div
         className={
           grid === 6 || grid === 12
@@ -74,7 +77,7 @@ const CardProducts = ({ grid }) => {
           <p>$100.00</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
