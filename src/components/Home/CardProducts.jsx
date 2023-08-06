@@ -11,10 +11,7 @@ import watch2 from "../../images/watch2.png";
 const CardProducts = ({ grid }) => {
   const { pathname } = useLocation();
   return (
-    <Link
-      to="/product/assa"
-      className={pathname === "/products" ? `col-${grid} ` : "col-2 mb-3"}
-    >
+    <div className={pathname === "/products" ? `col-${grid} ` : "col-2 mb-3"}>
       <div
         className={
           grid === 6 || grid === 12
@@ -26,14 +23,14 @@ const CardProducts = ({ grid }) => {
       >
         <div className="position-relative">
           <div className="wishlist-icon position-absolute">
-            <Link>
+            <Link to="">
               <img src={wish} alt="wish" />
             </Link>
           </div>
-          <div className="product-image">
+          <Link to="/product/assa" className="product-image">
             <img src={watch} alt="watch" />
             <img src={watch2} alt="watch2" />
-          </div>
+          </Link>
           <div className="action-bar position-absolute">
             <div
               className={
@@ -42,13 +39,13 @@ const CardProducts = ({ grid }) => {
                   : "d-flex flex-column gap-15"
               }
             >
-              <Link>
+              <Link to="">
                 <img src={prodcompare} alt="prodcompare" />
               </Link>
-              <Link>
+              <Link to="">
                 <img src={view} alt="view" />
               </Link>
-              <Link>
+              <Link to="">
                 <img src={addcart} alt="addcart" />
               </Link>
             </div>
@@ -77,7 +74,7 @@ const CardProducts = ({ grid }) => {
           <p>$100.00</p>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
