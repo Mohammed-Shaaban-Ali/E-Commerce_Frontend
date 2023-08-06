@@ -264,6 +264,7 @@
     border: 2px solid gray;
     cursor: pointer;
     transition: 0.3s;
+    padding: 10px;
 }
 
 .image-small:hover {

@@ -15,11 +15,7 @@ const MainStore = () => {
             <p className="mb-0 ">Sort By:</p>
             <select name="" className="form-control  form-select" id="">
               <option value="manual">Featured</option>
-              <option
-                style={{ margin: "20px" }}
-                value="best-selling"
-                selected="selected"
-              >
+              <option style={{ margin: "20px" }} value="best-selling">
                 Best Selling
               </option>
               <option value="title-ascending">Alphabetically, A-Z</option>

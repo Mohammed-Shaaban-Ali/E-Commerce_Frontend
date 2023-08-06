@@ -113,16 +113,32 @@ const SingleProductPage = () => {
                   className="mySwiper"
                 >
                   <SwiperSlide>
-                    <img src={product1} className="image-small img-fluid" />
+                    <img
+                      alt="product"
+                      src={product1}
+                      className="image-small img-fluid"
+                    />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src={product2} className="image-small img-fluid" />
+                    <img
+                      alt="product"
+                      src={product2}
+                      className="image-small img-fluid"
+                    />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src={product3} className="image-small img-fluid" />
+                    <img
+                      alt="product"
+                      src={product3}
+                      className="image-small img-fluid"
+                    />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src={product4} className="image-small img-fluid" />
+                    <img
+                      alt="product"
+                      src={product4}
+                      className="image-small img-fluid"
+                    />
                   </SwiperSlide>
                 </Swiper>
               </div>
@@ -137,7 +153,6 @@ const SingleProductPage = () => {
                     <div className=" d-flex gap-10 align-items-center">
                       <ReactStars
                         count={5}
-                        onChange={() => {}}
                         edit={true}
                         size={24}
                         activeColor="#ffd700"
@@ -322,7 +337,6 @@ const SingleProductPage = () => {
                     <div className=" d-flex align-items-center gap-10">
                       <ReactStars
                         count={5}
-                        onChange={() => {}}
                         edit={true}
                         size={24}
                         activeColor="#ffd700"
@@ -370,7 +384,6 @@ const SingleProductPage = () => {
                       <h5>Rating</h5>
                       <ReactStars
                         count={5}
-                        onChange={() => {}}
                         edit={true}
                         size={24}
                         activeColor="#ffd700"
@@ -403,7 +416,6 @@ const SingleProductPage = () => {
                   <div className="review-comment">
                     <ReactStars
                       count={5}
-                      onChange={() => {}}
                       edit={true}
                       value={3}
                       size={24}
@@ -418,7 +430,6 @@ const SingleProductPage = () => {
                   <div className="review-comment">
                     <ReactStars
                       count={5}
-                      onChange={() => {}}
                       edit={true}
                       value={3}
                       size={24}
