@@ -84,3 +84,9 @@ a {
 .form-control:focus {
     background-color: #f4f4f4;
 }
+
+.error {
+    color: red;
+    font-size: 14px;
+    padding: 4px 8px;
+}

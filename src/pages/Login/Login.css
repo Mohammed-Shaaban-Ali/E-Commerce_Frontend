@@ -21,7 +21,6 @@
 .login-card form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
 .login-card .form-control {
