@@ -10,6 +10,14 @@ const getAllBlogs = async () => {
     toast.error(error.response.data.message);
   }
 };
+const getBlog = async (id) => {
+  try {
+    const { data } = await request.get(`/api/blog/${id}`);
+    return data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
 
-const blogService = { getAllBlogs };
+const blogService = { getAllBlogs, getBlog };
 export default blogService;
