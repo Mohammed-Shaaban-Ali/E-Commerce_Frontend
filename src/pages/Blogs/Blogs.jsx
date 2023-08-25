@@ -3,7 +3,18 @@ import SEO from "../../components/SEO";
 import BreadCrumb from "../../components/BreadCrumb";
 import { Link } from "react-router-dom";
 import BlogCart from "../../components/Home/BlogCart";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllBlogs } from "../../redux/slices/blogSlice";
+
 const Blogs = () => {
+  const dispatch = useDispatch();
+  const { blogs } = useSelector((state) => state.blog);
+
+  useEffect(() => {
+    dispatch(getAllBlogs());
+  }, []);
+
   return (
     <>
       <SEO title="Blogs" />
@@ -24,10 +35,12 @@ const Blogs = () => {
             </div>
             <div className="col-9">
               <div className="row">
-                <BlogCart />
-                <BlogCart />
-                <BlogCart />
-                <BlogCart />
+                {blogs.lenght === 0 && (
+                  <h2 className="text-center text-danger">No Data</h2>
+                )}
+                {blogs?.map((item, index) => (
+                  <BlogCart item={item} key={index} />
+                ))}
               </div>
             </div>
           </div>
