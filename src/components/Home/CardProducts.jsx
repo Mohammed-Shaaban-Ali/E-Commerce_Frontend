@@ -1,13 +1,11 @@
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import watch from "../../images/watch.jpg";
 import prodcompare from "../../images/prodcompare.svg";
 import view from "../../images/view.svg";
 import addcart from "../../images/add-cart.svg";
 import wish from "../../images/wish.svg";
 import watch2 from "../../images/watch2.png";
-import { useEffect } from "react";
 import { addToWishList } from "../../redux/slices/productSlice";
 
 const CardProducts = ({ grid, product }) => {
