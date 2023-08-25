@@ -1,15 +1,22 @@
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
 import watch from "../../images/watch.jpg";
 import prodcompare from "../../images/prodcompare.svg";
 import view from "../../images/view.svg";
 import addcart from "../../images/add-cart.svg";
 import wish from "../../images/wish.svg";
 import watch2 from "../../images/watch2.png";
+import { useEffect } from "react";
+import { addToWishList } from "../../redux/slices/productSlice";
 
 const CardProducts = ({ grid, product }) => {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
+  const addWishList = (id) => {
+    dispatch(addToWishList(id));
+  };
   return (
     <div className={pathname === "/products" ? `col-${grid} ` : "col-2 mb-3"}>
       <div
@@ -23,7 +30,7 @@ const CardProducts = ({ grid, product }) => {
       >
         <div className="position-relative">
           <div className="wishlist-icon position-absolute">
-            <Link>
+            <Link onClick={() => addWishList(product?._id)}>
               <img src={wish} alt="wish" />
             </Link>
           </div>
