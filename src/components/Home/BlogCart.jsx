@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import blog1 from "../../images/blog-1.jpg";
+import moment from "moment";
 
 const BlogCart = ({ item }) => {
   const { pathname } = useLocation();
@@ -11,14 +12,14 @@ const BlogCart = ({ item }) => {
           <img src={item?.images[0]?.url} alt="blog1" />
         </div>
         <div className="blog-contant">
-          <p>11 JUNE, 2022</p>
+          <p>{moment(item?.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</p>
           <h6>{item?.title.substr(0, 50) + " ..."}</h6>
           <p
             dangerouslySetInnerHTML={{
               __html: item?.description.substr(0, 100) + " ...",
             }}
           ></p>
-          <Link to="/blog/:id" className="button">
+          <Link to={`/blog/${item?._id}`} className="button">
             READ MORE
           </Link>
         </div>

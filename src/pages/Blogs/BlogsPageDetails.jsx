@@ -1,17 +1,30 @@
 import SEO from "../../components/SEO";
 import BreadCrumb from "../../components/BreadCrumb";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import blog1 from "../../images/blog-1.jpg";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { AiFillFacebook } from "react-icons/ai";
 import { AiFillTwitterSquare } from "react-icons/ai";
 import { AiFillInstagram } from "react-icons/ai";
 import { Form } from "react-bootstrap";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBlog } from "../../redux/slices/blogSlice";
+import moment from "moment";
+
 const BlogsPageDetails = () => {
+  const location = useLocation();
+  const blogId = location.pathname.split("/")[2];
+  const dispatch = useDispatch();
+  const { singleBlog } = useSelector((state) => state.blog);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(getBlog(blogId));
+  }, []);
   return (
     <>
-      <SEO title="Blogs Name" />
-      <BreadCrumb title="Blogs Name" />
+      <SEO title={singleBlog?.title} />
+      <BreadCrumb title={singleBlog?.title} />
       <div className="bloh-wrapper home-wrapper-2 py-5">
         <div className="container-xxl">
           <div className="row">
@@ -31,19 +44,25 @@ const BlogsPageDetails = () => {
                 <div className="col-12">
                   <div className="d-flex flex-column gap-30">
                     <div className="singe-blog-card">
-                      <h6>A Beautiful Sound Moring Renaissance</h6>
+                      <h6>{singleBlog?.title}</h6>
                       <div className="singe-blog-image">
-                        <img src={blog1} alt="blog1" className="img-fluid" />
+                        <img
+                          src={singleBlog?.images[0]?.url}
+                          alt="blog1"
+                          className="img-fluid"
+                        />
                       </div>
                       <div className="singe-blog-contant">
-                        <p className="text-end m-2">11 JUNE, 2022</p>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Voluptates nulla cupiditate perferendis, iste
-                          incidunt aspernatur, eaque ipsam possimus laborum
-                          blanditiis explicabo vero assumenda fugiat praesentium
-                          commodi mollitia excepturi exercitationem amet?
+                        <p className="text-end m-2">
+                          {moment(singleBlog?.createdAt).format(
+                            "MMMM Do YYYY, h:mm:ss a"
+                          )}
                         </p>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: singleBlog?.description,
+                          }}
+                        ></p>
                       </div>
                     </div>
                     <div className="social d-flex flex-row align-items-center justify-content-between">
