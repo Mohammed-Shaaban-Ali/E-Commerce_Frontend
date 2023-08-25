@@ -9,10 +9,16 @@ import Features from "../../components/Home/Features";
 import SpecialWrapper from "../../components/Home/SpecialWrapper";
 import SEO from "../../components/SEO";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllBlogs } from "../../redux/slices/blogSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const { blogs } = useSelector((state) => state.blog);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    dispatch(getAllBlogs());
   }, []);
   return (
     <>
@@ -24,7 +30,7 @@ const Home = () => {
       <Cards />
       <SpecialWrapper />
       <Marque />
-      <Blog />
+      <Blog blogs={blogs} />
     </>
   );
 };
