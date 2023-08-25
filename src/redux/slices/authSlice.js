@@ -27,7 +27,7 @@ export const register = createAsyncThunk(
 export const resetState = createAction("Reset_all");
 
 const initialState = {
-  user: [], //getUserFromLocalStorge,
+  user: getUserFromLocalStorge, //getUserFromLocalStorge,
   orders: [],
   isError: false,
   isLoading: false,

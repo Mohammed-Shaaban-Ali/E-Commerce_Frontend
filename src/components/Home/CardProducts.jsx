@@ -8,7 +8,7 @@ import addcart from "../../images/add-cart.svg";
 import wish from "../../images/wish.svg";
 import watch2 from "../../images/watch2.png";
 
-const CardProducts = ({ grid }) => {
+const CardProducts = ({ grid, product }) => {
   const { pathname } = useLocation();
   return (
     <div className={pathname === "/products" ? `col-${grid} ` : "col-2 mb-3"}>
@@ -23,12 +23,12 @@ const CardProducts = ({ grid }) => {
       >
         <div className="position-relative">
           <div className="wishlist-icon position-absolute">
-            <Link to="">
+            <Link>
               <img src={wish} alt="wish" />
             </Link>
           </div>
-          <Link to="/product/assa" className="product-image">
-            <img src={watch} alt="watch" />
+          <Link to={`/product/${product?._id}`} className="product-image">
+            <img src={product?.images[0]?.url} alt="watch" />
             <img src={watch2} alt="watch2" />
           </Link>
           <div className="action-bar position-absolute">
@@ -54,24 +54,21 @@ const CardProducts = ({ grid }) => {
         <div
           className={grid === 12 ? "product-contant my-3" : "product-contant"}
         >
-          <h6>Havels</h6>
-          <h5 className={grid === 12 ? `full-h5` : ""}>
-            Kids headphones bulk 10 pack multi colored for...
-          </h5>
-          <p className={grid === 12 ? ` mb-0 full-p` : "d-none"}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti
-            eaque dolorem veniam explicabo quibusdam at quaerat facilis
-            dignissimos pariatur expedita praesentium.
-          </p>
+          <h6>{product?.brand}</h6>
+          <h5 className={grid === 12 ? `full-h5` : ""}>{product?.title}</h5>
+          <p
+            className={grid === 12 ? ` mb-0 full-p` : "d-none"}
+            dangerouslySetInnerHTML={{ __html: product?.description }}
+          ></p>
           <ReactStars
             count={5}
             onChange={() => {}}
-            value={3}
+            value={product?.totalrating.toString()}
             edit={false}
             size={24}
             activeColor="#ffd700"
           />
-          <p>$100.00</p>
+          <p>$ {product?.price}</p>
         </div>
       </div>
     </div>

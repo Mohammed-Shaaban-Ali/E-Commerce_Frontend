@@ -5,7 +5,7 @@ import gr2 from "../../images/gr2.svg";
 import gr3 from "../../images/gr3.svg";
 import gr4 from "../../images/gr4.svg";
 
-const MainStore = () => {
+const MainStore = ({ products }) => {
   const [grid, setgrid] = useState(3);
   return (
     <div className="col-9 ">
@@ -28,7 +28,7 @@ const MainStore = () => {
           </div>
 
           <div className="grid d-flex align-items-center  gap-1">
-            <p className="totalProducts mb-0">21 Products</p>
+            <p className="totalProducts mb-0">{products?.length} Products</p>
             <div className="d-flex gap-10 align-items-center">
               <img
                 src={gr4}
@@ -68,13 +68,9 @@ const MainStore = () => {
           </div>
         </div>
         <div className="products-list d-flex flex-wrap pb-2">
-          <CardProducts grid={grid} />
-          <CardProducts grid={grid} />
-          <CardProducts grid={grid} />
-          <CardProducts grid={grid} />
-          <CardProducts grid={grid} />
-          <CardProducts grid={grid} />
-          <CardProducts grid={grid} />
+          {products?.map((product, index) => (
+            <CardProducts grid={grid} product={product} key={index} />
+          ))}
         </div>
       </div>
     </div>
