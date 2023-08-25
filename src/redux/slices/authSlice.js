@@ -23,6 +23,16 @@ export const register = createAsyncThunk(
     }
   }
 );
+export const getWishList = createAsyncThunk(
+  "users/getWishList",
+  async (thunkAPI) => {
+    try {
+      return await authService.getWishlist();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export const resetState = createAction("Reset_all");
 
@@ -55,6 +65,7 @@ const authSlice = createSlice({
         state.message = action.payload;
         state.user = null;
       })
+
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
@@ -69,6 +80,21 @@ const authSlice = createSlice({
         state.isSuccess = false;
         state.message = action.payload;
         state.user = null;
+      })
+
+      .addCase(getWishList.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getWishList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.WishList = action.payload;
+      })
+      .addCase(getWishList.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.message = action.payload;
       })
 
       .addCase(resetState, () => initialState);
