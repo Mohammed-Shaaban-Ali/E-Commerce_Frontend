@@ -1,22 +1,23 @@
 import { Link, useLocation } from "react-router-dom";
 import blog1 from "../../images/blog-1.jpg";
 
-const BlogCart = () => {
+const BlogCart = ({ item }) => {
   const { pathname } = useLocation();
 
   return (
     <div className={pathname === "/blogs" ? "col-6 mb-4" : "col-3"}>
       <div className="blog-card">
         <div className="blog-image">
-          <img src={blog1} alt="blog1" />
+          <img src={item?.images[0]?.url} alt="blog1" />
         </div>
         <div className="blog-contant">
           <p>11 JUNE, 2022</p>
-          <h6>A Beautiful Sound Moring Renaissance</h6>
-          <p>
-            You`re Only Good As Your Last Collection. Which is An Enormous
-            Pressure. I Think is SomeThing ...
-          </p>
+          <h6>{item?.title.substr(0, 50) + " ..."}</h6>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: item?.description.substr(0, 100) + " ...",
+            }}
+          ></p>
           <Link to="/blog/:id" className="button">
             READ MORE
           </Link>
