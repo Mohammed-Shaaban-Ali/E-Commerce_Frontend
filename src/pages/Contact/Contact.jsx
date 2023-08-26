@@ -6,8 +6,33 @@ import { AiFillHome } from "react-icons/ai";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { FaInfo } from "react-icons/fa";
+import { useFormik } from "formik";
+import { object, string } from "yup";
+import { addComment } from "../../redux/slices/contectSlice";
+import { useDispatch } from "react-redux";
 
+let userSchema = object({
+  name: string().required("Name is required"),
+  email: string().email().required("Email is required"),
+  mobile: string().required("Phone is required"),
+  comment: string().required("Comment is required"),
+});
 const Contact = () => {
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      name: "",
+      mobile: "",
+      comment: "",
+    },
+    validationSchema: userSchema,
+    onSubmit: (values) => {
+      dispatch(addComment(values));
+      formik.resetForm();
+      // console.log(values);
+    },
+  });
   return (
     <>
       <SEO title="Contact Us" />
@@ -31,21 +56,66 @@ const Contact = () => {
               <div className="contact-wrapper d-flex  justify-content-between">
                 <div className="">
                   <h3>Contact</h3>
-                  <Form>
-                    <Form.Group className="mb-4" controlId="formBasicEmail">
-                      <Form.Control type="text" placeholder="Name" />
+                  <Form onSubmit={formik.handleSubmit}>
+                    <Form.Group className="mb-4">
+                      <Form.Control
+                        type="text"
+                        id="name"
+                        placeholder="Enter Your Name"
+                        name="name"
+                        onChange={formik.handleChange("name")}
+                        value={formik.values.name}
+                      />
+                      <div className="error">
+                        {formik.touched.name && formik.errors.name ? (
+                          <div>{formik.errors.name}</div>
+                        ) : null}
+                      </div>
                     </Form.Group>
-                    <Form.Group className="mb-4" controlId="formBasicEmail">
-                      <Form.Control type="email" placeholder="Email" />
+                    <Form.Group className="mb-4">
+                      <Form.Control
+                        type="email"
+                        id="email"
+                        placeholder="Enter Your Email"
+                        name="email"
+                        onChange={formik.handleChange("email")}
+                        value={formik.values.email}
+                      />
+                      <div className="error">
+                        {formik.touched.email && formik.errors.email ? (
+                          <div>{formik.errors.email}</div>
+                        ) : null}
+                      </div>
                     </Form.Group>
-                    <Form.Group className="mb-4" controlId="formBasicEmail">
-                      <Form.Control type="text" placeholder="Phone" />
+                    <Form.Group className="mb-4">
+                      <Form.Control
+                        type="text"
+                        id="mobile"
+                        placeholder="Enter Your Mobile"
+                        name="mobile"
+                        onChange={formik.handleChange("mobile")}
+                        value={formik.values.mobile}
+                      />
+                      <div className="error">
+                        {formik.touched.mobile && formik.errors.mobile ? (
+                          <div>{formik.errors.mobile}</div>
+                        ) : null}
+                      </div>
                     </Form.Group>
                     <Form.Control
                       as="textarea"
-                      placeholder="Comment"
                       style={{ height: "100px" }}
+                      id="comment"
+                      placeholder="Enter Your Comment"
+                      name="comment"
+                      onChange={formik.handleChange("comment")}
+                      value={formik.values.comment}
                     />
+                    <div className="error">
+                      {formik.touched.comment && formik.errors.comment ? (
+                        <div>{formik.errors.comment}</div>
+                      ) : null}
+                    </div>
                     <button
                       className="button"
                       style={{ marginTop: "20px" }}
