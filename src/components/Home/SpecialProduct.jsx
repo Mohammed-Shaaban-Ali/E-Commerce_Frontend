@@ -3,30 +3,32 @@ import { Link } from "react-router-dom";
 import watch from "../../images/watch.jpg";
 import ReactStars from "react-rating-stars-component";
 
-const SpecialProduct = () => {
+const SpecialProduct = ({ product }) => {
   return (
     <div className="col-6 mb-3">
       <div className="spacial-product-card">
         <div className="d-flex justify-content-between">
           <div className="spacial-product-image">
-            <img src={watch} className="img-fluid" alt="watch" />
+            <img
+              src={product?.images[0]?.url}
+              className="img-fluid"
+              alt="watch"
+            />
           </div>
           <div className="spacial-product-contant">
-            <h5 className="brand">Havels</h5>
-            <h6 className="title">
-              Samsung Galaxy Note10+ Mobile Phone; sim...
-            </h6>
+            <h5 className="brand">{product?.brand}</h5>
+            <h6 className="title">{product?.title.substr(0, 40) + "..."}</h6>
             <ReactStars
               classNames="stars"
               count={5}
               onChange={() => {}}
-              value={3}
+              value={product?.totalrating?.toString()}
               edit={false}
               size={24}
               activeColor="#ffd700"
             />
             <p>
-              <span>$100</span> <strike>$200</strike>
+              <span>$ {product?.price}</span> <strike>$200</strike>
             </p>
             <div className="discount-till d-flex align-items-center gap-10">
               <p className="mb-0">
@@ -39,8 +41,13 @@ const SpecialProduct = () => {
               </div>
             </div>
             <div className="product-count my-3">
-              <p>Products: 5</p>
-              <ProgressBar now={60} />
+              <p>Products: {product?.quantity}</p>
+              <ProgressBar
+                now={
+                  ((product?.quantity - product?.sold) / product?.quantity) *
+                  100
+                }
+              />
             </div>
             <Link className="button">Add To Card</Link>
           </div>

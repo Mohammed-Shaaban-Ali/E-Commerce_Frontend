@@ -1,0 +1,12 @@
+.product-card-image {
+    width: 120px;
+    height: 200px;
+    margin: auto;
+    display: flex;
+}
+
+.product-card-image img {
+    width: 100%;
+    margin: 16px auto;
+
+}

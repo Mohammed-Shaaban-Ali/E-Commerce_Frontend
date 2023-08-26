@@ -11,14 +11,17 @@ import SEO from "../../components/SEO";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogs } from "../../redux/slices/blogSlice";
+import { getProducts } from "../../redux/slices/productSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { blogs } = useSelector((state) => state.blog);
+  const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getAllBlogs());
+    dispatch(getProducts());
   }, []);
   return (
     <>
@@ -26,9 +29,9 @@ const Home = () => {
       <Banner />
       <Servies />
       <Categories />
-      <Features />
+      <Features products={products ? products : []} />
       <Cards />
-      <SpecialWrapper />
+      <SpecialWrapper products={products ? products : []} />
       <Marque />
       <Blog blogs={blogs} />
     </>

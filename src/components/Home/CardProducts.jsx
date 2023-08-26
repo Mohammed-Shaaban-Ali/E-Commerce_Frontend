@@ -5,6 +5,7 @@ import prodcompare from "../../images/prodcompare.svg";
 import view from "../../images/view.svg";
 import addcart from "../../images/add-cart.svg";
 import wish from "../../images/wish.svg";
+import watch from "../../images/watch.jpg";
 import watch2 from "../../images/watch2.png";
 import { addToWishList } from "../../redux/slices/productSlice";
 
@@ -60,7 +61,9 @@ const CardProducts = ({ grid, product }) => {
           className={grid === 12 ? "product-contant my-3" : "product-contant"}
         >
           <h6>{product?.brand}</h6>
-          <h5 className={grid === 12 ? `full-h5` : ""}>{product?.title}</h5>
+          <h5 className={grid === 12 ? `full-h5` : ""}>
+            {product?.title.substr(0, 40) + "..."}
+          </h5>
           <p
             className={grid === 12 ? ` mb-0 full-p` : "d-none"}
             dangerouslySetInnerHTML={{ __html: product?.description }}
