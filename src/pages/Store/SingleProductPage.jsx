@@ -1,3 +1,5 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 import BreadCrumb from "../../components/BreadCrumb";
 import Features from "../../components/Home/Features";
 import SEO from "../../components/SEO";
@@ -29,13 +31,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import { useLocation } from "react-router-dom";
-import { getsingleProduct } from "../../redux/slices/productSlice";
-import { addCart } from "../../redux/slices/authSlice";
+
+import {
+  addToWishList,
+  getsingleProduct,
+} from "../../redux/slices/productSlice";
+import { addCart, getCart } from "../../redux/slices/authSlice";
 import Color from "../../components/Store/Color";
 import { toast } from "react-toastify";
 
 const SingleProductPage = () => {
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const productId = pathname.split("/")[2];
 
@@ -45,12 +51,23 @@ const SingleProductPage = () => {
 
   const [quantity, setQuantity] = useState(1);
   const [color, setcolor] = useState(null);
+  const [alredyadd, setAlredyadd] = useState(false);
 
   const dispatch = useDispatch();
   const { singleProduct } = useSelector((state) => state.products);
+  const { userCartPrduct } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getsingleProduct(productId));
+    dispatch(getCart());
+  }, []);
+
+  useEffect(() => {
+    for (let i = 0; i < userCartPrduct?.length; i++) {
+      if (productId === userCartPrduct[i]?.productId?._id) {
+        setAlredyadd(true);
+      }
+    }
   }, []);
 
   const addToCart = (product) => {
@@ -64,6 +81,9 @@ const SingleProductPage = () => {
           quantity,
         })
       );
+  };
+  const addWishList = (id) => {
+    dispatch(addToWishList(id));
   };
 
   return (
@@ -179,9 +199,8 @@ const SingleProductPage = () => {
               <div className="col-6">
                 <div className="main-product-details d-flex flex-column gap-10">
                   <h5>{singleProduct?.title}</h5>
-
                   <div className="d-flex gap-2 flex-column">
-                    <h5>$ {singleProduct?.price}</h5>
+                    <h5 style={{ color: "green" }}>$ {singleProduct?.price}</h5>
                     <div className=" d-flex gap-10 align-items-center">
                       <ReactStars
                         count={5}
@@ -196,10 +215,6 @@ const SingleProductPage = () => {
                   </div>
 
                   <div className="d-flex gap-3 flex-column">
-                    <div className=" d-flex gap-10 align-items-center">
-                      <h5>Type : </h5>
-                      <p className="mb-0">Headsets</p>
-                    </div>
                     <div className=" d-flex gap-10 align-items-center">
                       <h5>Brand : </h5>
                       <p className="mb-0">{singleProduct?.brand}</p>
@@ -229,34 +244,49 @@ const SingleProductPage = () => {
                       </div>
                     </div>
                     <div className=" d-flex gap-10 flex-column">
-                      <h5>Color : </h5>
-                      <Color
-                        setcolor={setcolor}
-                        id={color ? color : ""}
-                        colors={
-                          singleProduct?.color ? singleProduct?.color : []
-                        }
-                      />
+                      {!alredyadd && (
+                        <>
+                          <h5>Color : </h5>
+                          <Color
+                            setcolor={setcolor}
+                            id={color ? color : ""}
+                            colors={
+                              singleProduct?.color ? singleProduct?.color : []
+                            }
+                          />
+                        </>
+                      )}
                     </div>
 
                     <div className=" d-flex gap-10 align-items-center">
-                      <h5>Quantity : </h5>
+                      {!alredyadd && (
+                        <>
+                          <h5>Quantity : </h5>
+                        </>
+                      )}
                       <div className="d-flex gap-15">
-                        <input
-                          type="number"
-                          name="Quantity"
-                          id="Quantity"
-                          style={{ width: "50px", textAlign: "center" }}
-                          onChange={(e) => setQuantity(e.target.value)}
-                          value={quantity}
-                        />
+                        {!alredyadd && (
+                          <>
+                            <input
+                              type="number"
+                              name="Quantity"
+                              id="Quantity"
+                              style={{ width: "50px", textAlign: "center" }}
+                              onChange={(e) => setQuantity(e.target.value)}
+                              value={quantity}
+                            />
+                          </>
+                        )}
+
                         <button
                           className="button"
-                          onClick={() =>
-                            addToCart(singleProduct ? singleProduct : [])
-                          }
+                          onClick={() => {
+                            alredyadd
+                              ? navigate("/cart")
+                              : addToCart(singleProduct ? singleProduct : []);
+                          }}
                         >
-                          Add To Cart
+                          {alredyadd ? "Go To Cart" : "Add To Cart"}
                         </button>
                         <button className="button2">Buy It Now</button>
                       </div>
@@ -265,7 +295,12 @@ const SingleProductPage = () => {
                     <div className=" d-flex gap-30 ">
                       <div className="icon d-flex gap-10 align-items-center">
                         <BsHeart />
-                        <p className="mb-0">Add to wishlist</p>
+                        <p
+                          onClick={() => addWishList(singleProduct?._id)}
+                          className="mb-0"
+                        >
+                          Add to wishlist
+                        </p>
                       </div>
                       <div className="icon d-flex gap-10 align-items-center">
                         <TbGitCompare />
