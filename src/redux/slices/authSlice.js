@@ -52,6 +52,17 @@ export const getCart = createAsyncThunk("users/getCart", async (thunkAPI) => {
   }
 });
 
+export const removeProductCart = createAsyncThunk(
+  "users/removeProductCart",
+  async (id, thunkAPI) => {
+    try {
+      return await authService.removeProductCart(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const resetState = createAction("Reset_all");
 
 const initialState = {
@@ -149,6 +160,20 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.message = action.payload;
+      })
+
+      .addCase(removeProductCart.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(removeProductCart.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.removeCartPrduct = action.payload;
+      })
+      .addCase(removeProductCart.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.isSuccess = false;
       })
 
       .addCase(resetState, () => initialState);

@@ -50,11 +50,24 @@ const getCart = async () => {
   }
 };
 
+const removeProductCart = async (id) => {
+  try {
+    const { data } = await request.delete(
+      `/api/user/remove-cart/${id}`,
+      ConfigToken
+    );
+    return data;
+  } catch (error) {
+    toast.error(error);
+  }
+};
+
 const authService = {
   login,
   register,
   getWishlist,
   addCart,
   getCart,
+  removeProductCart,
 };
 export default authService;

@@ -6,7 +6,7 @@ import product4 from "../../images/product4.png";
 import product1 from "../../images/product1.png";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart } from "../../redux/slices/authSlice";
+import { getCart, removeProductCart } from "../../redux/slices/authSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,12 @@ const Cart = () => {
   useEffect(() => {
     dispatch(getCart());
   }, []);
+  const removeItemCart = (id) => {
+    dispatch(removeProductCart(id));
+    setTimeout(() => {
+      dispatch(getCart());
+    }, 300);
+  };
 
   return (
     <>
@@ -77,7 +83,10 @@ const Cart = () => {
                           textAlign: "center",
                         }}
                       />
-                      <div className="delete-icon">
+                      <div
+                        className="delete-icon"
+                        onClick={() => removeItemCart(product?._id)}
+                      >
                         <AiOutlineDelete />
                       </div>
                     </div>
