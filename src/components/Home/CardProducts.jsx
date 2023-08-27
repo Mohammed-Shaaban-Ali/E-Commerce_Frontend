@@ -12,7 +12,7 @@ import { addToWishList } from "../../redux/slices/productSlice";
 const CardProducts = ({ grid, product }) => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
-
+  const x = "asas";
   const addWishList = (id) => {
     dispatch(addToWishList(id));
   };
@@ -27,7 +27,10 @@ const CardProducts = ({ grid, product }) => {
             : "product-card  "
         }
       >
-        <div className="position-relative">
+        <div
+          style={{ width: grid === 6 || grid === 12 ? "40%" : "100%" }}
+          className=" position-relative"
+        >
           <div className="wishlist-icon position-absolute">
             <Link onClick={() => addWishList(product?._id)}>
               <img src={wish} alt="wish" />
@@ -62,11 +65,18 @@ const CardProducts = ({ grid, product }) => {
         >
           <h6>{product?.brand}</h6>
           <h5 className={grid === 12 ? `full-h5` : ""}>
-            {product?.title.substr(0, 40) + "..."}
+            {product?.title.length >= 40
+              ? product?.title.substr(0, 40) + "..."
+              : product?.title}
           </h5>
           <p
-            className={grid === 12 ? ` mb-0 full-p` : "d-none"}
-            dangerouslySetInnerHTML={{ __html: product?.description }}
+            className={grid === 12 || grid === 6 ? ` mb-0 full-p` : "d-none"}
+            dangerouslySetInnerHTML={{
+              __html:
+                product?.description.length >= 250
+                  ? product?.description.substr(0, 250) + "..."
+                  : product?.description,
+            }}
           ></p>
           <ReactStars
             count={5}
@@ -76,7 +86,9 @@ const CardProducts = ({ grid, product }) => {
             size={24}
             activeColor="#ffd700"
           />
-          <p>$ {product?.price}</p>
+          <p style={{ color: "green", fontWeight: "bold" }}>
+            $ {product?.price}
+          </p>
         </div>
       </div>
     </div>

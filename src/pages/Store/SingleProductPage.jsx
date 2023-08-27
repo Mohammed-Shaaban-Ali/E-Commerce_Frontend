@@ -200,7 +200,7 @@ const SingleProductPage = () => {
                 <div className="main-product-details d-flex flex-column gap-10">
                   <h5>{singleProduct?.title}</h5>
                   <div className="d-flex gap-2 flex-column">
-                    <h5>$ {singleProduct?.price}</h5>
+                    <h5 style={{ color: "green" }}>$ {singleProduct?.price}</h5>
                     <div className=" d-flex gap-10 align-items-center">
                       <ReactStars
                         count={5}
