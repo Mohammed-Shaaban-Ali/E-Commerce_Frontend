@@ -15,6 +15,7 @@ const Cart = () => {
   useEffect(() => {
     dispatch(getCart());
   }, []);
+
   return (
     <>
       <SEO title=" Cart " />
