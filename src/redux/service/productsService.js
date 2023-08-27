@@ -18,12 +18,20 @@ const addToWishList = async (prodId) => {
     );
     return data;
   } catch (error) {
-    console.log(error);
+    console.log(error.request.data.message);
   }
 };
-
+const getsingleProduct = async (id) => {
+  try {
+    const { data } = await request.get(`/api/product/${id}`);
+    return data;
+  } catch (error) {
+    console.log(error.request.data.message);
+  }
+};
 const productsService = {
   getProducts,
   addToWishList,
+  getsingleProduct,
 };
 export default productsService;
