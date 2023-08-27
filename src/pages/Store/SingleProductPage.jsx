@@ -24,18 +24,32 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import { useLocation } from "react-router-dom";
+import { getsingleProduct } from "../../redux/slices/productSlice";
 
 const SingleProductPage = () => {
+  const { pathname } = useLocation();
+  const productId = pathname.split("/")[2];
+
   const [oprderProduct, setOprderProduct] = useState(true);
   const [reviweForm, setreviweForm] = useState(false);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+  const dispatch = useDispatch();
+  const { singleProduct } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(getsingleProduct(productId));
+  }, []);
   return (
     <>
-      <SEO title="Product Name" />
-      <BreadCrumb title="Product Name" />
+      <SEO title={singleProduct?.title} />
+      <BreadCrumb title={singleProduct?.title} />
 
       <div className="main-product-wrapper home-wrapper-2 py-5">
         <div className="container-xxl">
@@ -144,17 +158,16 @@ const SingleProductPage = () => {
               </div>
               <div className="col-6">
                 <div className="main-product-details d-flex flex-column gap-10">
-                  <h5>
-                    Kids Headphones Bulk 10 Pack Mlti Colotrd For Students
-                  </h5>
+                  <h5>{singleProduct?.title}</h5>
 
                   <div className="d-flex gap-2 flex-column">
-                    <h5>$100.00</h5>
+                    <h5>$ {singleProduct?.price}</h5>
                     <div className=" d-flex gap-10 align-items-center">
                       <ReactStars
                         count={5}
-                        edit={true}
+                        edit={false}
                         size={24}
+                        value={singleProduct?.totalrating.toString()}
                         activeColor="#ffd700"
                       />
                       <p className="mb-0">(2 reviews)</p>
@@ -169,16 +182,15 @@ const SingleProductPage = () => {
                     </div>
                     <div className=" d-flex gap-10 align-items-center">
                       <h5>Brand : </h5>
-                      <p className="mb-0">Haveils</p>
+                      <p className="mb-0">{singleProduct?.brand}</p>
                     </div>
                     <div className=" d-flex gap-10 align-items-center">
                       <h5>Categories : </h5>
-                      <p className="mb-0">HandFree</p>
+                      <p className="mb-0">{singleProduct?.category}</p>
                     </div>
                     <div className=" d-flex gap-10 align-items-center">
                       <h5>Tags : </h5>
-                      <p className="mb-0"> Apple</p>
-                      <p className="mb-0">Oppo </p>
+                      <p className="mb-0">{singleProduct?.tags} </p>
                     </div>
                     <div className=" d-flex gap-10 align-items-center">
                       <h5>SKU : </h5>
@@ -186,7 +198,7 @@ const SingleProductPage = () => {
                     </div>
                     <div className=" d-flex gap-10 align-items-center">
                       <h5>Availability : </h5>
-                      <p className="mb-0">542 in Stock</p>
+                      <p className="mb-0">{singleProduct?.quantity} in Stock</p>
                     </div>
                     <div className=" d-flex gap-10 flex-column">
                       <h5>Size : </h5>
@@ -199,9 +211,10 @@ const SingleProductPage = () => {
                     <div className=" d-flex gap-10 flex-column">
                       <h5>Color : </h5>
                       <div className="d-flex flex-wrap gap-15">
-                        <span className="color "></span>
-                        <span className="color "></span>
-                        <span className="color "></span>
+                        <span
+                          className="color"
+                          style={{ backgroundColor: singleProduct?.color[0] }}
+                        ></span>
                       </div>
                     </div>
 
@@ -314,12 +327,11 @@ const SingleProductPage = () => {
             <div className="col-12">
               <div className="bg-white p-3">
                 <h4>Description</h4>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Repudiandae rerum fuga ducimus doloremque inventore molestias
-                  sequi sint, eaque facere tenetur saepe atque voluptatibus
-                  magni fugit sunt? Eius maiores similique sapiente?
-                </p>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: singleProduct?.description,
+                  }}
+                ></p>
               </div>
             </div>
           </div>

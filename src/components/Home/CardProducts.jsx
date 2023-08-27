@@ -33,10 +33,10 @@ const CardProducts = ({ grid, product }) => {
               <img src={wish} alt="wish" />
             </Link>
           </div>
-          <Link to={`/product/${product?._id}`} className="product-image">
+          <dev className="product-image">
             <img src={product?.images[0]?.url} alt="watch" />
             <img src={watch2} alt="watch2" />
-          </Link>
+          </dev>
           <div className="action-bar position-absolute">
             <div
               className={
@@ -48,7 +48,7 @@ const CardProducts = ({ grid, product }) => {
               <Link to="">
                 <img src={prodcompare} alt="prodcompare" />
               </Link>
-              <Link to="">
+              <Link to={`/product/${product?._id}`}>
                 <img src={view} alt="view" />
               </Link>
               <Link to="">
