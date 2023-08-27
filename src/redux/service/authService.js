@@ -41,11 +41,20 @@ const addCart = async (cartdata) => {
     toast.error(error.response.data.message);
   }
 };
+const getCart = async () => {
+  try {
+    const { data } = await request.get("/api/user/cart", ConfigToken);
+    return data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
 
 const authService = {
   login,
   register,
   getWishlist,
   addCart,
+  getCart,
 };
 export default authService;

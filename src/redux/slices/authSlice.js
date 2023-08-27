@@ -44,6 +44,13 @@ export const addCart = createAsyncThunk(
     }
   }
 );
+export const getCart = createAsyncThunk("users/getCart", async (thunkAPI) => {
+  try {
+    return await authService.getCart();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
 
 export const resetState = createAction("Reset_all");
 
@@ -127,6 +134,21 @@ const authSlice = createSlice({
         if (state.isError) {
           toast.error("product added failed");
         }
+      })
+
+      .addCase(getCart.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCart.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.userCartPrduct = action.payload;
+      })
+      .addCase(getCart.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.message = action.payload;
       })
 
       .addCase(resetState, () => initialState);
