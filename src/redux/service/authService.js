@@ -29,9 +29,23 @@ const getWishlist = async () => {
     toast.error(error.response.data.message);
   }
 };
+const addCart = async (cartdata) => {
+  try {
+    const { data } = await request.post(
+      "/api/user/cart",
+      cartdata,
+      ConfigToken
+    );
+    return data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
 const authService = {
   login,
   register,
   getWishlist,
+  addCart,
 };
 export default authService;

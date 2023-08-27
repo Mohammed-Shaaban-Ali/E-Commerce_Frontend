@@ -31,6 +31,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { useLocation } from "react-router-dom";
 import { getsingleProduct } from "../../redux/slices/productSlice";
+import { addCart } from "../../redux/slices/authSlice";
+import Color from "../../components/Store/Color";
+import { toast } from "react-toastify";
 
 const SingleProductPage = () => {
   const { pathname } = useLocation();
@@ -40,12 +43,29 @@ const SingleProductPage = () => {
   const [reviweForm, setreviweForm] = useState(false);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+  const [quantity, setQuantity] = useState(1);
+  const [color, setcolor] = useState(null);
+
   const dispatch = useDispatch();
   const { singleProduct } = useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(getsingleProduct(productId));
   }, []);
+
+  const addToCart = (product) => {
+    if (!color) toast.error("choose a color");
+    else
+      dispatch(
+        addCart({
+          productId: product._id,
+          price: product?.price,
+          color,
+          quantity,
+        })
+      );
+  };
+
   return (
     <>
       <SEO title={singleProduct?.title} />
@@ -210,12 +230,13 @@ const SingleProductPage = () => {
                     </div>
                     <div className=" d-flex gap-10 flex-column">
                       <h5>Color : </h5>
-                      <div className="d-flex flex-wrap gap-15">
-                        <span
-                          className="color"
-                          style={{ backgroundColor: singleProduct?.color[0] }}
-                        ></span>
-                      </div>
+                      <Color
+                        setcolor={setcolor}
+                        id={color ? color : ""}
+                        colors={
+                          singleProduct?.color ? singleProduct?.color : []
+                        }
+                      />
                     </div>
 
                     <div className=" d-flex gap-10 align-items-center">
@@ -223,12 +244,20 @@ const SingleProductPage = () => {
                       <div className="d-flex gap-15">
                         <input
                           type="number"
-                          value={1}
                           name="Quantity"
                           id="Quantity"
                           style={{ width: "50px", textAlign: "center" }}
+                          onChange={(e) => setQuantity(e.target.value)}
+                          value={quantity}
                         />
-                        <button className="button">ADD TO CARD</button>
+                        <button
+                          className="button"
+                          onClick={() =>
+                            addToCart(singleProduct ? singleProduct : [])
+                          }
+                        >
+                          Add To Cart
+                        </button>
                         <button className="button2">Buy It Now</button>
                       </div>
                     </div>
