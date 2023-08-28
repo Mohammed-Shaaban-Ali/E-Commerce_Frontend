@@ -4,22 +4,45 @@ import SEO from "../../components/SEO";
 import { AiOutlineDelete } from "react-icons/ai";
 import product4 from "../../images/product4.png";
 import product1 from "../../images/product1.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, removeProductCart } from "../../redux/slices/authSlice";
+import {
+  getCart,
+  removeProductCart,
+  updateProductCartUsingQuantity,
+} from "../../redux/slices/authSlice";
 
 const Cart = () => {
+  const [upadtequantity, setquantityNumber] = useState(null);
   const dispatch = useDispatch();
   const { userCartPrduct } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getCart());
   }, []);
+  useEffect(() => {
+    if (upadtequantity !== null)
+      dispatch(
+        updateProductCartUsingQuantity({
+          cartItemId: upadtequantity?.id,
+          newQuantity: upadtequantity?.quantity,
+        })
+      );
+    setTimeout(() => {
+      dispatch(getCart());
+    }, 200);
+  }, [upadtequantity]);
+
   const removeItemCart = (id) => {
     dispatch(removeProductCart(id));
     setTimeout(() => {
       dispatch(getCart());
     }, 300);
+  };
+  const handlequantity = (e) => {
+    if (upadtequantity !== null) {
+      return upadtequantity.quantity;
+    } else return e;
   };
 
   return (
@@ -76,12 +99,18 @@ const Cart = () => {
                         type="number"
                         name="quantity"
                         id="quantity"
-                        value={product?.quantity}
+                        value={handlequantity(product?.quantity)}
                         style={{
                           width: "60px",
                           height: "40px",
                           textAlign: "center",
                         }}
+                        onChange={(e) =>
+                          setquantityNumber({
+                            id: product?._id,
+                            quantity: e.target.value,
+                          })
+                        }
                       />
                       <div
                         className="delete-icon"
@@ -103,7 +132,7 @@ const Cart = () => {
                 <div className="my-4 d-flex flex-row align-items-center justify-content-between">
                   <p>Order special instructions</p>
                   <p>
-                    Subtotal{" "}
+                    Subtotal
                     <span style={{ fontWeight: "bold" }}> $100.00</span>
                   </p>
                 </div>

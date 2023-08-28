@@ -62,6 +62,16 @@ export const removeProductCart = createAsyncThunk(
     }
   }
 );
+export const updateProductCartUsingQuantity = createAsyncThunk(
+  "users/updateProductCartUsingQuantity",
+  async (cartData, thunkAPI) => {
+    try {
+      return await authService.updateProductCartUsingQuantity(cartData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export const resetState = createAction("Reset_all");
 
@@ -92,7 +102,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.message = action.payload;
-        state.user = null;
       })
 
       .addCase(register.pending, (state) => {
@@ -169,8 +178,28 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.removeCartPrduct = action.payload;
+        if (state.isSuccess && state.removeCartPrduct) {
+          toast.success("product deleted successfully");
+        }
       })
       .addCase(removeProductCart.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.isSuccess = false;
+      })
+
+      .addCase(updateProductCartUsingQuantity.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateProductCartUsingQuantity.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.updateCartPrduct = action.payload;
+        if (state.isSuccess && state.updateCartPrduct) {
+          toast.success("product updated successfully");
+        }
+      })
+      .addCase(updateProductCartUsingQuantity.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.isSuccess = false;

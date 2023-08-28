@@ -61,6 +61,20 @@ const removeProductCart = async (id) => {
     toast.error(error);
   }
 };
+const updateProductCartUsingQuantity = async (cartData) => {
+  try {
+    const { cartItemId, newQuantity } = cartData;
+    //console.log(typeof +cartItemId);
+    const { data } = await request.put(
+      `/api/user/updateCartItem/${newQuantity}/${cartItemId}`,
+      "",
+      ConfigToken
+    );
+    return data;
+  } catch (error) {
+    toast.error(error);
+  }
+};
 
 const authService = {
   login,
@@ -69,5 +83,6 @@ const authService = {
   addCart,
   getCart,
   removeProductCart,
+  updateProductCartUsingQuantity,
 };
 export default authService;
