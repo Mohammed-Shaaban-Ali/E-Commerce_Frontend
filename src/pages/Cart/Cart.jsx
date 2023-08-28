@@ -14,6 +14,8 @@ import {
 
 const Cart = () => {
   const [upadtequantity, setquantityNumber] = useState(null);
+  const [totalSum, settotalSum] = useState(null);
+
   const dispatch = useDispatch();
   const { userCartPrduct } = useSelector((state) => state.auth);
 
@@ -32,6 +34,15 @@ const Cart = () => {
       dispatch(getCart());
     }, 200);
   }, [upadtequantity]);
+
+  useEffect(() => {
+    let sum = 0;
+    for (let i = 0; i < userCartPrduct?.length; i++) {
+      sum =
+        sum + Number(userCartPrduct[i]?.quantity) * userCartPrduct[i]?.price;
+      settotalSum(sum);
+    }
+  }, [userCartPrduct]);
 
   const removeItemCart = (id) => {
     dispatch(removeProductCart(id));
@@ -126,24 +137,29 @@ const Cart = () => {
                 ))}
             </div>
 
-            <div className="col-12">
-              <div className="cart-footer">
-                <button className="button">Continue Shopping</button>
-                <div className="my-4 d-flex flex-row align-items-center justify-content-between">
-                  <p>Order special instructions</p>
-                  <p>
-                    Subtotal
-                    <span style={{ fontWeight: "bold" }}> $100.00</span>
-                  </p>
-                </div>
-                <div className="d-flex flex-column gap-15 align-items-end">
-                  <p>Taxes and shipping calculated at checkout</p>
-                  <button className="button" style={{ width: "300px" }}>
-                    Check Out
-                  </button>
+            {userCartPrduct?.length !== 0 && (
+              <div className="col-12">
+                <div className="cart-footer">
+                  <button className="button">Continue Shopping</button>
+                  <div className="my-4 d-flex flex-row align-items-center justify-content-between">
+                    <p>Order special instructions</p>
+                    <p style={{ color: "black" }}>
+                      Subtotal:
+                      <span style={{ fontWeight: "bold" }}>
+                        {" "}
+                        $ {totalSum ? totalSum : 0}
+                      </span>
+                    </p>
+                  </div>
+                  <div className="d-flex flex-column gap-15 align-items-end">
+                    <p>Taxes and shipping calculated at checkout</p>
+                    <button className="button" style={{ width: "300px" }}>
+                      Check Out
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

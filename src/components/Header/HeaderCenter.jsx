@@ -5,8 +5,26 @@ import wishlist from "../../images/wishlist.svg";
 import user from "../../images/user.svg";
 import cart from "../../images/cart.svg";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getCart } from "../../redux/slices/authSlice";
 
 const HeaderCenter = () => {
+  const [totalSum, settotalSum] = useState(null);
+
+  const dispatch = useDispatch();
+  const { userCartPrduct } = useSelector((state) => state.auth);
+  useEffect(() => {
+    dispatch(getCart());
+  }, [totalSum, userCartPrduct]);
+  useEffect(() => {
+    let sum = 0;
+    for (let i = 0; i < userCartPrduct?.length; i++) {
+      sum =
+        sum + Number(userCartPrduct[i]?.quantity) * userCartPrduct[i]?.price;
+      settotalSum(sum);
+    }
+  }, [userCartPrduct]);
   return (
     <header className="header-upper  pt-3">
       <div className="container-xxl">
@@ -77,8 +95,10 @@ const HeaderCenter = () => {
                 >
                   <img src={cart} alt="cart" />
                   <div className="d-flex flex-column gap-10">
-                    <span className="badge bg-white text-dark">0</span>
-                    <p className="mb-0">$ 500</p>
+                    <span className="badge bg-white text-dark">
+                      {userCartPrduct?.length ? userCartPrduct?.length : 0}
+                    </span>
+                    <p className="mb-0">$ {totalSum ? totalSum : 0}</p>
                   </div>
                 </Link>
               </div>
