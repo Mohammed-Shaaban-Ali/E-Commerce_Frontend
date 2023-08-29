@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { getCart } from "../../redux/slices/authSlice";
 import { useFormik } from "formik";
 import { object, string, number } from "yup";
+import request from "../../utils/request";
+import { ConfigToken } from "../../utils/validateToken";
 
 import "./Cart.css";
 import BreadCrumb from "../../components/BreadCrumb";
@@ -10,6 +12,7 @@ import SEO from "../../components/SEO";
 import { Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa";
+import axios from "axios";
 
 let userSchema = object({
   firstName: string().required("firstName is required"),
@@ -28,11 +31,14 @@ const CheckOut = () => {
 
   const [totalSum, settotalSum] = useState(null);
   const [shippingInfo, setshippingInfo] = useState(null);
+  const [paymentInfo, setpaymentInfo] = useState({
+    razorpayOrderId: "",
+    razorpayPaymentId: "",
+  });
 
   useEffect(() => {
     dispatch(getCart());
   }, []);
-
   useEffect(() => {
     let sum = 0;
     for (let i = 0; i < userCartPrduct?.length; i++) {
@@ -56,9 +62,88 @@ const CheckOut = () => {
     validationSchema: userSchema,
     onSubmit: (values) => {
       setshippingInfo(values);
+      displayRazorpay();
     },
   });
-  console.log(shippingInfo);
+
+  function loadScript(src) {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  }
+
+  async function displayRazorpay() {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    const result = await request.post(
+      "/api/user/order/checkout",
+      "",
+      ConfigToken
+    );
+
+    if (!result) {
+      alert("Server error. Are you online?");
+      return;
+    }
+
+    const { amount, id: order_id, currency } = result.data.order;
+    const options = {
+      key: "rzp_test_lzWb771CXqE3Au", // Enter the Key ID generated from the Dashboard
+      amount: amount,
+      currency: currency,
+      name: "Mohammed Shaaban.",
+      description: "Test Transaction",
+      order_id: order_id,
+      handler: async function (response) {
+        const data = {
+          orderCreationId: order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpayOrderId: response.razorpay_order_id,
+        };
+
+        setpaymentInfo({
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpayOrderId: response.razorpay_order_id,
+        });
+        const result = await request.post(
+          "/api/user/order/paymentVerification",
+          data,
+          ConfigToken
+        );
+
+        // alert(result.data.msg);
+      },
+      prefill: {
+        name: "Mohammed Shaaban",
+        email: "ms7500746@gmail.com",
+        contact: "01224146762",
+      },
+      notes: {
+        address: "Egypt",
+      },
+      theme: {
+        color: "#61dafb",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  }
   return (
     <>
       <SEO title=" Check Out " />
@@ -237,7 +322,7 @@ const CheckOut = () => {
                       className="d-flex align-items-center gap-1 text-dark"
                     >
                       <FaAngleLeft style={{ fontSize: "24px" }} />
-                      <p className="mb-0">Return to cart</p>
+                      Return to cart
                     </Link>
                     <button type="submit" className="checkout-btn">
                       Continue to shipping
