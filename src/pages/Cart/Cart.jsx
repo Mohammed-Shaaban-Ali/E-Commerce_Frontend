@@ -11,6 +11,7 @@ import {
   removeProductCart,
   updateProductCartUsingQuantity,
 } from "../../redux/slices/authSlice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [upadtequantity, setquantityNumber] = useState(null);
@@ -146,16 +147,15 @@ const Cart = () => {
                     <p style={{ color: "black" }}>
                       Subtotal:
                       <span style={{ fontWeight: "bold" }}>
-                        {" "}
                         $ {totalSum ? totalSum : 0}
                       </span>
                     </p>
                   </div>
                   <div className="d-flex flex-column gap-15 align-items-end">
                     <p>Taxes and shipping calculated at checkout</p>
-                    <button className="button" style={{ width: "300px" }}>
+                    <Link to="/checkout" className="button">
                       Check Out
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

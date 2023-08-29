@@ -147,8 +147,8 @@
 }
 
 .check-right-data .product-details .product-details-image {
-    width: 90px;
-    /* height: 80px; */
+    width: 80px;
+    height: 80px;
     background-color: white;
     border-radius: 8px;
     display: flex;
@@ -157,7 +157,8 @@
 }
 
 .check-right-data .product-details .product-details-image img {
-    width: 100%;
+    width: 90%;
+    height: 100%;
     padding: 8px;
 }
 

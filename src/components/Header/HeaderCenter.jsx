@@ -14,9 +14,10 @@ const HeaderCenter = () => {
 
   const dispatch = useDispatch();
   const { userCartPrduct } = useSelector((state) => state.auth);
+
   useEffect(() => {
     dispatch(getCart());
-  }, [totalSum, userCartPrduct]);
+  }, [userCartPrduct?.length]);
   useEffect(() => {
     let sum = 0;
     for (let i = 0; i < userCartPrduct?.length; i++) {
