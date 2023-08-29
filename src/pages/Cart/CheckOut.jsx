@@ -1,3 +1,9 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getCart } from "../../redux/slices/authSlice";
+import { useFormik } from "formik";
+import { object, string, number } from "yup";
+
 import "./Cart.css";
 import BreadCrumb from "../../components/BreadCrumb";
 import SEO from "../../components/SEO";
@@ -5,21 +11,28 @@ import { Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa";
 
-import product1 from "../../images/product1.png";
-import product4 from "../../images/product4.png";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { getCart } from "../../redux/slices/authSlice";
+let userSchema = object({
+  firstName: string().required("firstName is required"),
+  lastName: string().required("lastName is required"),
+  address: string().required("address is required"),
+  state: string().required("state is required"),
+  city: string().required("city is required"),
+  country: string().required("country is required"),
+  pincode: number().required("pincode is required"),
+  other: string().required("country is required"),
+});
 
 const CheckOut = () => {
-  const [totalSum, settotalSum] = useState(null);
-
   const dispatch = useDispatch();
   const { userCartPrduct } = useSelector((state) => state.auth);
+
+  const [totalSum, settotalSum] = useState(null);
+  const [shippingInfo, setshippingInfo] = useState(null);
 
   useEffect(() => {
     dispatch(getCart());
   }, []);
+
   useEffect(() => {
     let sum = 0;
     for (let i = 0; i < userCartPrduct?.length; i++) {
@@ -28,6 +41,24 @@ const CheckOut = () => {
       settotalSum(sum);
     }
   }, [userCartPrduct]);
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      address: "",
+      state: "",
+      city: "",
+      country: "",
+      pincode: "",
+      other: "",
+    },
+    validationSchema: userSchema,
+    onSubmit: (values) => {
+      setshippingInfo(values);
+    },
+  });
+  console.log(shippingInfo);
   return (
     <>
       <SEO title=" Check Out " />
@@ -59,13 +90,26 @@ const CheckOut = () => {
                   Mohamed Shaaban (ms7500746@gmail.com)
                 </p>
                 <h4>Shipping Address</h4>
-                <form className=" d-flex flex-wrap gap-4 justify-content-between">
+                <form
+                  onSubmit={formik.handleSubmit}
+                  className=" d-flex flex-wrap gap-4 justify-content-between"
+                >
                   <div className="w-100">
-                    <select className="form-control form-select">
-                      <option selected disabled>
+                    <select
+                      className="form-control form-select"
+                      onChange={formik.handleChange("country")}
+                      value={formik.values.country}
+                    >
+                      <option value="" disabled>
                         Select Country
                       </option>
+                      <option value="Egypt">Egypt</option>
                     </select>
+                    <div className="error">
+                      {formik.touched.country && formik.errors.country ? (
+                        <div>{formik.errors.country}</div>
+                      ) : null}
+                    </div>
                   </div>
 
                   <div className="flex-grow-1">
@@ -73,7 +117,16 @@ const CheckOut = () => {
                       type="text"
                       placeholder="First Name"
                       className="form-control"
+                      id="firstName"
+                      name="firstName"
+                      onChange={formik.handleChange("firstName")}
+                      value={formik.values.firstName}
                     />
+                    <div className="error">
+                      {formik.touched.firstName && formik.errors.firstName ? (
+                        <div>{formik.errors.firstName}</div>
+                      ) : null}
+                    </div>
                   </div>
 
                   <div className="flex-grow-1">
@@ -81,7 +134,16 @@ const CheckOut = () => {
                       type="text"
                       placeholder="Last Name"
                       className="form-control"
+                      id="lastName"
+                      name="lastName"
+                      onChange={formik.handleChange("lastName")}
+                      value={formik.values.lastName}
                     />
+                    <div className="error">
+                      {formik.touched.lastName && formik.errors.lastName ? (
+                        <div>{formik.errors.lastName}</div>
+                      ) : null}
+                    </div>
                   </div>
 
                   <div className="w-100">
@@ -89,7 +151,16 @@ const CheckOut = () => {
                       type="text"
                       placeholder="Addres"
                       className="form-control"
+                      id="address"
+                      name="address"
+                      onChange={formik.handleChange("address")}
+                      value={formik.values.address}
                     />
+                    <div className="error">
+                      {formik.touched.address && formik.errors.address ? (
+                        <div>{formik.errors.address}</div>
+                      ) : null}
+                    </div>
                   </div>
 
                   <div className="w-100">
@@ -97,7 +168,16 @@ const CheckOut = () => {
                       type="text"
                       placeholder="Apartmen, suite, ectc"
                       className="form-control"
+                      id="other"
+                      name="other"
+                      onChange={formik.handleChange("other")}
+                      value={formik.values.other}
                     />
+                    <div className="error">
+                      {formik.touched.other && formik.errors.other ? (
+                        <div>{formik.errors.other}</div>
+                      ) : null}
+                    </div>
                   </div>
 
                   <div className="flex-grow-1">
@@ -105,31 +185,61 @@ const CheckOut = () => {
                       type="text"
                       placeholder="City"
                       className="form-control"
+                      id="city"
+                      name="city"
+                      onChange={formik.handleChange("city")}
+                      value={formik.values.city}
                     />
+                    <div className="error">
+                      {formik.touched.city && formik.errors.city ? (
+                        <div>{formik.errors.city}</div>
+                      ) : null}
+                    </div>
                   </div>
+
                   <div className="flex-grow-1">
-                    <select name="" id="" className="form-control form-select">
-                      <option selected disabled>
-                        Egypt
+                    <select
+                      className="form-control form-select"
+                      onChange={formik.handleChange("state")}
+                      value={formik.values.state}
+                    >
+                      <option value="" disabled>
+                        Select State
                       </option>
+                      <option value="Haryana">Haryana</option>
                     </select>
+                    <div className="error">
+                      {formik.touched.state && formik.errors.state ? (
+                        <div>{formik.errors.state}</div>
+                      ) : null}
+                    </div>
                   </div>
+
                   <div className="flex-grow-1">
                     <input
                       type="text"
                       placeholder="ZIP code"
                       className="form-control"
+                      id="pincode"
+                      name="pincode"
+                      onChange={formik.handleChange("pincode")}
+                      value={formik.values.pincode}
                     />
+                    <div className="error">
+                      {formik.touched.pincode && formik.errors.pincode ? (
+                        <div>{formik.errors.pincode}</div>
+                      ) : null}
+                    </div>
                   </div>
                   <div className="w-100 d-flex justify-content-between align-items-center">
                     <Link
-                      to="/"
+                      to="/cart"
                       className="d-flex align-items-center gap-1 text-dark"
                     >
                       <FaAngleLeft style={{ fontSize: "24px" }} />
                       <p className="mb-0">Return to cart</p>
                     </Link>
-                    <button className="checkout-btn">
+                    <button type="submit" className="checkout-btn">
                       Continue to shipping
                     </button>
                   </div>
