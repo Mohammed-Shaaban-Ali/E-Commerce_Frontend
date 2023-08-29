@@ -7,8 +7,27 @@ import { FaAngleLeft } from "react-icons/fa";
 
 import product1 from "../../images/product1.png";
 import product4 from "../../images/product4.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getCart } from "../../redux/slices/authSlice";
 
 const CheckOut = () => {
+  const [totalSum, settotalSum] = useState(null);
+
+  const dispatch = useDispatch();
+  const { userCartPrduct } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, []);
+  useEffect(() => {
+    let sum = 0;
+    for (let i = 0; i < userCartPrduct?.length; i++) {
+      sum =
+        sum + Number(userCartPrduct[i]?.quantity) * userCartPrduct[i]?.price;
+      settotalSum(sum);
+    }
+  }, [userCartPrduct]);
   return (
     <>
       <SEO title=" Check Out " />
@@ -120,57 +139,52 @@ const CheckOut = () => {
 
             <div className="col-5">
               <div className="check-right-data">
-                <div className="product-details d-flex flex-row gap-30 mb-4">
-                  <div className="d-flex flex-row gap-4">
-                    <div className="product-details-image position-relative">
-                      <img
-                        src={product1}
-                        className="img-fluid"
-                        alt="product1"
-                      />
-                      <dic className="number">
-                        <p>1</p>
-                      </dic>
+                {userCartPrduct?.map((product, index) => (
+                  <div
+                    key={index}
+                    className="product-details d-flex flex-row gap-30 mb-4"
+                  >
+                    <div className="d-flex flex-row gap-4 align-items-center justify-content-center">
+                      <div className="product-details-image position-relative">
+                        <img
+                          src={product?.productId?.images[0]?.url}
+                          className="img-fluid"
+                          alt="product1"
+                        />
+                        <div className="number">
+                          <p>{product?.quantity}</p>
+                        </div>
+                      </div>
+                      <div className="d-flex flex-column gap-15">
+                        <h6 className="mb-1 ">
+                          {product?.productId?.title.length >= 30
+                            ? product?.productId?.title.substr(0, 30) + "..."
+                            : product?.productId?.title}
+                        </h6>
+                        <p
+                          style={{
+                            width: "25px",
+                            height: "25px",
+                            borderRadius: "50%",
+                            backgroundColor: product?.color?.title,
+                          }}
+                        ></p>
+                      </div>
                     </div>
-                    <div className="d-flex flex-column ">
-                      <h6 className="mb-1 ">
-                        Kids Headphones Bulk 10 Pack Mlti Colotrd For Students
-                      </h6>
-                      <p>S / #BsCEDE</p>
-                    </div>
+                    <h4>$ {product?.quantity * product?.price}</h4>
                   </div>
-                  <h5>$100.00</h5>
-                </div>
+                ))}
 
-                <div className="product-details d-flex flex-row gap-30 mb-4">
-                  <div className="d-flex flex-row gap-4">
-                    <div className="product-details-image position-relative">
-                      <img
-                        src={product4}
-                        className="img-fluid"
-                        alt="product1"
-                      />
-                      <dic className="number">
-                        <p>1</p>
-                      </dic>
-                    </div>
-                    <div className="d-flex flex-column ">
-                      <h6 className="mb-1 ">
-                        Kids Headphones Bulk 10 Pack Mlti Colotrd For Students
-                      </h6>
-                      <p>S / #BsCEDE</p>
-                    </div>
-                  </div>
-                  <h5>$100.00</h5>
-                </div>
                 <div className="price-details">
                   <div className="d-flex justify-content-between align-items-center ">
                     <p>Subtotal</p>
-                    <p style={{ fontWeight: "bold" }}>$200.00</p>
+                    <p style={{ fontWeight: "bold" }}>
+                      $ {totalSum ? totalSum : 0}
+                    </p>
                   </div>
                   <div className="d-flex justify-content-between align-items-center ">
                     <p>Shipping</p>
-                    <p style={{ fontWeight: "bold" }}>$19.65</p>
+                    <p style={{ fontWeight: "bold" }}>$ 4.99</p>
                   </div>
                 </div>
                 <div className="mt-3 d-flex justify-content-between align-items-center ">
@@ -186,7 +200,7 @@ const CheckOut = () => {
                     >
                       USD
                     </span>
-                    $219.65
+                    $ {totalSum ? totalSum + 4.99 : 0}
                   </h4>
                 </div>
               </div>

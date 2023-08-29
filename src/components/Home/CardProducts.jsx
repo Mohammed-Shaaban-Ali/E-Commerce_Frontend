@@ -12,7 +12,6 @@ import { addToWishList } from "../../redux/slices/productSlice";
 const CardProducts = ({ grid, product }) => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
-  const x = "asas";
   const addWishList = (id) => {
     dispatch(addToWishList(id));
   };
@@ -36,10 +35,10 @@ const CardProducts = ({ grid, product }) => {
               <img src={wish} alt="wish" />
             </Link>
           </div>
-          <dev className="product-image">
+          <div className="product-image">
             <img src={product?.images[0]?.url} alt="watch" />
             <img src={watch2} alt="watch2" />
-          </dev>
+          </div>
           <div className="action-bar position-absolute">
             <div
               className={
