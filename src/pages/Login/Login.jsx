@@ -9,16 +9,18 @@ import { Link } from "react-router-dom";
 import { login, resetState } from "../../redux/slices/authSlice";
 import CustomInput from "../../components/CustomInput";
 
+let userSchema = object({
+  email: string().email().required("Email is required"),
+  password: string().required("Password is required"),
+});
+
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError, isLoading, isSuccess, message } = useSelector(
     (state) => state.auth
   );
-  let userSchema = object({
-    email: string().email().required("Email is required"),
-    password: string().required("Password is required"),
-  });
+
   const formik = useFormik({
     initialValues: {
       email: "",
