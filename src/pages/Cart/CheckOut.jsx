@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getCart } from "../../redux/slices/authSlice";
+import { creatOrder, getCart } from "../../redux/slices/authSlice";
 import { useFormik } from "formik";
 import { object, string, number } from "yup";
 import request from "../../utils/request";
@@ -12,7 +12,6 @@ import SEO from "../../components/SEO";
 import { Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa";
-import axios from "axios";
 
 let userSchema = object({
   firstName: string().required("firstName is required"),
@@ -30,11 +29,8 @@ const CheckOut = () => {
   const { userCartPrduct } = useSelector((state) => state.auth);
 
   const [totalSum, settotalSum] = useState(null);
-  const [shippingInfo, setshippingInfo] = useState(null);
-  const [paymentInfo, setpaymentInfo] = useState({
-    razorpayOrderId: "",
-    razorpayPaymentId: "",
-  });
+  const [shippingInfoData, setshippingInfoData] = useState({});
+  const [orderItemsarray, setorderItemsarray] = useState([]);
 
   useEffect(() => {
     dispatch(getCart());
@@ -48,6 +44,19 @@ const CheckOut = () => {
     }
   }, [userCartPrduct]);
 
+  useEffect(() => {
+    let items = [];
+    for (let i = 0; i < userCartPrduct?.length; i++) {
+      items.push({
+        product: userCartPrduct[i]?.productId?._id,
+        color: userCartPrduct[i]?.color?._id,
+        quantity: userCartPrduct[i]?.quantity,
+        price: userCartPrduct[i]?.price,
+      });
+      setorderItemsarray(items);
+    }
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -60,9 +69,10 @@ const CheckOut = () => {
       other: "",
     },
     validationSchema: userSchema,
-    onSubmit: (values) => {
-      setshippingInfo(values);
-      displayRazorpay();
+    onSubmit: async (values) => {
+      // setTimeout(() => {
+      displayRazorpay(values);
+      // }, 300);
     },
   });
 
@@ -80,7 +90,7 @@ const CheckOut = () => {
     });
   }
 
-  async function displayRazorpay() {
+  async function displayRazorpay(values) {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -116,16 +126,27 @@ const CheckOut = () => {
           razorpayOrderId: response.razorpay_order_id,
         };
 
-        setpaymentInfo({
-          razorpayPaymentId: response.razorpay_payment_id,
-          razorpayOrderId: response.razorpay_order_id,
-        });
         const result = await request.post(
           "/api/user/order/paymentVerification",
           data,
           ConfigToken
         );
+        // setpaymentInfoData({
+        //   razorpayPaymentId: response.razorpay_payment_id,
+        //   razorpayOrderId: response.razorpay_order_id,
+        // });
 
+        const allDataOrdered = {
+          totalPrice: totalSum,
+          totalPriceAfterDiscount: totalSum,
+          paymentInfo: {
+            razorpayPaymentId: response.razorpay_payment_id,
+            razorpayOrder: response.razorpay_order_id,
+          },
+          shippingInfo: values,
+          orderItems: orderItemsarray,
+        };
+        dispatch(creatOrder(allDataOrdered));
         // alert(result.data.msg);
       },
       prefill: {
@@ -144,6 +165,8 @@ const CheckOut = () => {
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   }
+
+  // console.log(allDataOrdered);
   return (
     <>
       <SEO title=" Check Out " />
