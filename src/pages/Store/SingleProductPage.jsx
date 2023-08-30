@@ -72,7 +72,7 @@ const SingleProductPage = () => {
 
   const addToCart = (product) => {
     if (!color) toast.error("choose a color");
-    else
+    else {
       dispatch(
         addCart({
           productId: product._id,
@@ -81,6 +81,8 @@ const SingleProductPage = () => {
           quantity,
         })
       );
+      navigate("/cart");
+    }
   };
   const addWishList = (id) => {
     dispatch(addToWishList(id));

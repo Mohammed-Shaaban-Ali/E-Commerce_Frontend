@@ -2,7 +2,7 @@ import { BsSearch } from "react-icons/bs";
 
 import compare from "../../images/compare.svg";
 import wishlist from "../../images/wishlist.svg";
-import user from "../../images/user.svg";
+import userimage from "../../images/user.svg";
 import cart from "../../images/cart.svg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,11 +13,8 @@ const HeaderCenter = () => {
   const [totalSum, settotalSum] = useState(null);
 
   const dispatch = useDispatch();
-  const { userCartPrduct } = useSelector((state) => state.auth);
+  const { userCartPrduct, user } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    dispatch(getCart());
-  }, [userCartPrduct?.length]);
   useEffect(() => {
     let sum = 0;
     for (let i = 0; i < userCartPrduct?.length; i++) {
@@ -79,13 +76,17 @@ const HeaderCenter = () => {
 
               <div>
                 <Link
-                  to="/login"
+                  to={user ? "" : "/login"}
                   className="d-flex align-items-center gap-10 text-white"
                 >
-                  <img src={user} alt="user" />
-                  <p className="mb-0">
-                    Log in <br /> My Account
-                  </p>
+                  <img src={userimage} alt="user" />
+                  {user ? (
+                    user?.firstName
+                  ) : (
+                    <p className="mb-0">
+                      Log in <br /> My Account
+                    </p>
+                  )}
                 </Link>
               </div>
 
