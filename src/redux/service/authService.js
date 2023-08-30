@@ -76,6 +76,19 @@ const updateProductCartUsingQuantity = async (cartData) => {
   }
 };
 
+const creatOrder = async (orderData) => {
+  try {
+    const { data } = await request.post(
+      `/api/user/cart/create-order`,
+      orderData,
+      ConfigToken
+    );
+    return data;
+  } catch (error) {
+    toast.error(error);
+  }
+};
+
 const authService = {
   login,
   register,
@@ -84,5 +97,6 @@ const authService = {
   getCart,
   removeProductCart,
   updateProductCartUsingQuantity,
+  creatOrder,
 };
 export default authService;
