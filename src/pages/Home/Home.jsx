@@ -12,14 +12,17 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogs } from "../../redux/slices/blogSlice";
 import { getProducts } from "../../redux/slices/productSlice";
+import { getCart } from "../../redux/slices/authSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { blogs } = useSelector((state) => state.blog);
   const { products } = useSelector((state) => state.products);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (user) dispatch(getCart());
     dispatch(getAllBlogs());
     dispatch(getProducts());
   }, []);

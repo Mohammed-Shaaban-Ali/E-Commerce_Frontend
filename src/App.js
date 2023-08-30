@@ -20,6 +20,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import SingleProductPage from "./pages/Store/SingleProductPage";
 import Cart from "./pages/Cart/Cart";
 import CheckOut from "./pages/Cart/CheckOut";
+import { PrivateRoute } from "./routes/PrivateRoute";
 
 function App() {
   return (
@@ -28,15 +29,36 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="checkout" element={<CheckOut />} />
+            <Route
+              path="cart"
+              element={
+                <PrivateRoute>
+                  <Cart />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="checkout"
+              element={
+                <PrivateRoute>
+                  <CheckOut />
+                </PrivateRoute>
+              }
+            />
             <Route path="blogs" element={<Blogs />} />
             <Route path="blog/:id" element={<BlogsPageDetails />} />
             <Route path="products" element={<Store />} />
             <Route path="product/:id" element={<SingleProductPage />} />
             <Route path="contact" element={<Contact />} />
             <Route path="compare-products" element={<CopmareProduct />} />
-            <Route path="wishlist" element={<WishList />} />
+            <Route
+              path="wishlist"
+              element={
+                <PrivateRoute>
+                  <WishList />
+                </PrivateRoute>
+              }
+            />
             <Route path="login" element={<Login />} />
             <Route path="singup" element={<Singup />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
