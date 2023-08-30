@@ -21,6 +21,7 @@ import SingleProductPage from "./pages/Store/SingleProductPage";
 import Cart from "./pages/Cart/Cart";
 import CheckOut from "./pages/Cart/CheckOut";
 import { PrivateRoute } from "./routes/PrivateRoute";
+import { openRoute } from "./routes/openRoute";
 
 function App() {
   return (
@@ -59,8 +60,22 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="login" element={<Login />} />
-            <Route path="singup" element={<Singup />} />
+            <Route
+              path="login"
+              element={
+                <openRoute>
+                  <Login />
+                </openRoute>
+              }
+            />
+            <Route
+              path="singup"
+              element={
+                <openRoute>
+                  <Singup />
+                </openRoute>
+              }
+            />
             <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="reset-password" element={<ResetPassword />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
