@@ -89,6 +89,15 @@ const creatOrder = async (orderData) => {
   }
 };
 
+const getMyOrder = async () => {
+  try {
+    const { data } = await request.get(`/api/user/cart/myorder`, ConfigToken);
+    return data;
+  } catch (error) {
+    toast.error(error);
+  }
+};
+
 const authService = {
   login,
   register,
@@ -98,5 +107,6 @@ const authService = {
   removeProductCart,
   updateProductCartUsingQuantity,
   creatOrder,
+  getMyOrder,
 };
 export default authService;

@@ -18,11 +18,10 @@ const Home = () => {
   const dispatch = useDispatch();
   const { blogs } = useSelector((state) => state.blog);
   const { products } = useSelector((state) => state.products);
-  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (user) dispatch(getCart());
+    dispatch(getCart());
     dispatch(getAllBlogs());
     dispatch(getProducts());
   }, []);

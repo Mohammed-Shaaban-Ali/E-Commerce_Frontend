@@ -22,6 +22,7 @@ import Cart from "./pages/Cart/Cart";
 import CheckOut from "./pages/Cart/CheckOut";
 import { PrivateRoute } from "./routes/PrivateRoute";
 import { openRoute } from "./routes/openRoute";
+import MyOrder from "./pages/MyOrder";
 
 function App() {
   return (
@@ -57,6 +58,15 @@ function App() {
               element={
                 <PrivateRoute>
                   <WishList />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="my-order"
+              element={
+                <PrivateRoute>
+                  <MyOrder />
                 </PrivateRoute>
               }
             />

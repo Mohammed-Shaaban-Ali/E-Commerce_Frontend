@@ -26,7 +26,9 @@ let userSchema = object({
 
 const CheckOut = () => {
   const dispatch = useDispatch();
-  const { userCartPrduct } = useSelector((state) => state.auth);
+  const { userCartPrduct, isSuccess, creatorder } = useSelector(
+    (state) => state.auth
+  );
 
   const [totalSum, settotalSum] = useState(null);
   const [shippingInfoData, setshippingInfoData] = useState({});
@@ -73,6 +75,9 @@ const CheckOut = () => {
       // setTimeout(() => {
       displayRazorpay(values);
       // }, 300);
+      setTimeout(() => {
+        formik.resetForm();
+      }, 1000);
     },
   });
 

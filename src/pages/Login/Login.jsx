@@ -29,7 +29,9 @@ const Login = () => {
     validationSchema: userSchema,
     onSubmit: (values) => {
       dispatch(login(values));
-      if (isSuccess) navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 100);
       formik.resetForm();
     },
   });
