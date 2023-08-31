@@ -37,16 +37,16 @@ const MyOrder = () => {
             <div key={i} className="col-12 mt-3">
               <div style={{ backgroundColor: "#febd69" }} className="row py-4">
                 <div className="col-3 ">
-                  <h6>{order?._id}</h6>
+                  <p>{order?._id}</p>
                 </div>
                 <div className="col-3">
-                  <h6>$ {order?.totalPrice}</h6>
+                  <p>$ {order?.totalPrice}</p>
                 </div>
                 <div className="col-3">
-                  <h6>$ {order?.totalPriceAfterDiscount}</h6>
+                  <p>$ {order?.totalPriceAfterDiscount}</p>
                 </div>
                 <div className="col-3">
-                  <h6>{order?.orderStatus}</h6>
+                  <p>{order?.orderStatus}</p>
                 </div>
 
                 <div className=" col-12">
@@ -55,16 +55,16 @@ const MyOrder = () => {
                     className="row p-3 "
                   >
                     <div className="col-3 ">
-                      <p>Product Name</p>
+                      <h6 className="mb-3">Product Name</h6>
                     </div>
                     <div className="col-3">
-                      <p>Quantity</p>
+                      <h6 className="mb-3">Quantity</h6>
                     </div>
                     <div className="col-3">
-                      <p>Price</p>
+                      <h6 className="mb-3">Price</h6>
                     </div>
                     <div className="col-3">
-                      <p>Color</p>
+                      <h6 className="mb-3">Color</h6>
                     </div>
                     {order?.orderItems?.map((item, i) => (
                       <div key={i} className="col-12">
