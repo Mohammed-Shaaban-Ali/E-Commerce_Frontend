@@ -98,6 +98,24 @@ const getMyOrder = async () => {
   }
 };
 
+const updateMyProfile = async (Data) => {
+  try {
+    const { data } = await request.put(`/api/user/`, Data, ConfigToken);
+    if (data) {
+      const user = JSON.parse(localStorage.getItem("normalUser"));
+      user.firstName = data.firstName;
+      user.lastName = data.lastName;
+      user.email = data.email;
+      user.mobile = data.mobile;
+      localStorage.setItem("normalUser", JSON.stringify(user));
+      // console.log(user.firstName);
+    }
+    return data;
+  } catch (error) {
+    toast.error(error);
+  }
+};
+
 const authService = {
   login,
   register,
@@ -108,5 +126,6 @@ const authService = {
   updateProductCartUsingQuantity,
   creatOrder,
   getMyOrder,
+  updateMyProfile,
 };
 export default authService;
