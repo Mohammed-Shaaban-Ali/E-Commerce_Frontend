@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { object, string } from "yup";
-import { useEffect } from "react";
 import SEO from "../../components/SEO";
 import BreadCrumb from "../../components/BreadCrumb";
 import CustomInput from "../../components/CustomInput";
@@ -36,6 +35,7 @@ const Singup = () => {
     onSubmit: (values) => {
       dispatch(register(values));
       formik.resetForm();
+      navigate("/login");
     },
   });
 
@@ -52,7 +52,7 @@ const Singup = () => {
                 <CustomInput
                   type="text"
                   id="firstName"
-                  label="First Name Your Email"
+                  label="First Name "
                   name="firstName"
                   onChange={formik.handleChange("firstName")}
                   value={formik.values.firstName}
@@ -65,7 +65,7 @@ const Singup = () => {
                 <CustomInput
                   type="text"
                   id="lastName"
-                  label="Last Name Your Email"
+                  label="Last Name "
                   name="lastName"
                   onChange={formik.handleChange("lastName")}
                   value={formik.values.lastName}
