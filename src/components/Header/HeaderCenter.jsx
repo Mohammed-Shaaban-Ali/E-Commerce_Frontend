@@ -1,19 +1,27 @@
-import { BsSearch } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
+import "react-bootstrap-typeahead/css/Typeahead.css";
 
+import { BsSearch } from "react-icons/bs";
 import compare from "../../images/compare.svg";
 import wishlist from "../../images/wishlist.svg";
 import userimage from "../../images/user.svg";
 import cart from "../../images/cart.svg";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { getCart } from "../../redux/slices/authSlice";
+import { getProducts } from "../../redux/slices/productSlice";
 
 const HeaderCenter = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [productOrders, setproductOrders] = useState([]);
+  const [paginate, setPaginate] = useState(true);
   const [totalSum, settotalSum] = useState(null);
 
-  const dispatch = useDispatch();
   const { userCartPrduct, user } = useSelector((state) => state.auth);
+  const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
     let sum = 0;
@@ -26,7 +34,18 @@ const HeaderCenter = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (user) dispatch(getCart());
+    dispatch(getProducts());
   }, []);
+
+  useEffect(() => {
+    let data = [];
+    for (let index = 0; index < products?.length; index++) {
+      const element = products[index];
+      data.push({ id: index, productId: element?._id, name: element?.title });
+    }
+    setproductOrders(data);
+  }, [products]);
+
   return (
     <header className="header-upper  pt-3">
       <div className="container-xxl">
@@ -39,12 +58,19 @@ const HeaderCenter = () => {
 
           <div className="col-5 ">
             <div className="input-group mb-3">
-              <input
-                type="text"
-                className="form-control"
+              <Typeahead
+                id="pagination-example"
+                options={productOrders}
+                paginate={paginate}
+                labelKey="name"
+                onChange={(e) => {
+                  navigate(`/product/${e[0]?.productId}`);
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 300);
+                }}
+                minLength={1}
                 placeholder="Search Product Here..."
-                aria-label="Search Product Here..."
-                aria-describedby="basic-addon2"
               />
               <span className="input-group-text " id="basic-addon2">
                 <BsSearch />
