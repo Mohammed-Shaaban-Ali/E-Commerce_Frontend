@@ -80,7 +80,7 @@ const HeaderCenter = () => {
 
               <div>
                 <Link
-                  to={user ? "" : "/login"}
+                  to={user ? "/my-profile" : "/login"}
                   className="d-flex align-items-center gap-10 text-white"
                 >
                   <img src={userimage} alt="user" />
