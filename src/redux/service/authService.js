@@ -58,7 +58,7 @@ const removeProductCart = async (id) => {
     );
     return data;
   } catch (error) {
-    toast.error(error);
+    toast.error(error.response.data.message);
   }
 };
 const updateProductCartUsingQuantity = async (cartData) => {
@@ -72,7 +72,7 @@ const updateProductCartUsingQuantity = async (cartData) => {
     );
     return data;
   } catch (error) {
-    toast.error(error);
+    toast.error(error.response.data.message);
   }
 };
 
@@ -85,7 +85,7 @@ const creatOrder = async (orderData) => {
     );
     return data;
   } catch (error) {
-    toast.error(error);
+    toast.error(error.response.data.message);
   }
 };
 
@@ -94,7 +94,7 @@ const getMyOrder = async () => {
     const { data } = await request.get(`/api/user/cart/myorder`, ConfigToken);
     return data;
   } catch (error) {
-    toast.error(error);
+    toast.error(error.response.data.message);
   }
 };
 
@@ -108,8 +108,32 @@ const updateMyProfile = async (Data) => {
       user.email = data.email;
       user.mobile = data.mobile;
       localStorage.setItem("normalUser", JSON.stringify(user));
-      // console.log(user.firstName);
     }
+    return data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
+const forgotPassword = async (Data) => {
+  try {
+    const { data } = await request.post(
+      `/api/user/forgot-password-token`,
+      Data
+    );
+    return data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
+const resetPassword = async (Data) => {
+  const { token, password } = Data;
+  console.log(password);
+  try {
+    const { data } = await request.put(`/api/user/reset-password/${token}`, {
+      password,
+    });
     return data;
   } catch (error) {
     toast.error(error);
@@ -127,5 +151,7 @@ const authService = {
   creatOrder,
   getMyOrder,
   updateMyProfile,
+  forgotPassword,
+  resetPassword,
 };
 export default authService;

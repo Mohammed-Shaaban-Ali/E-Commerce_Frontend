@@ -1,4 +1,4 @@
-import React from "react";
+import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
 import menu from "../../images/menu.svg";
@@ -6,6 +6,11 @@ import { Dropdown } from "react-bootstrap";
 import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 const HeaderDown = () => {
+  const { user } = useSelector((state) => state.auth);
+  const LogOut = () => {
+    localStorage.removeItem("normalUser");
+    window.location.reload();
+  };
   return (
     <header className="header-botton py-3">
       <div className="container-xxl">
@@ -48,12 +53,16 @@ const HeaderDown = () => {
                 <div className="line"></div>
               </div>
               <div className="menu-links">
-                <div className="d-flex align-items-center gap-30">
+                <div clas className="d-flex align-items-center gap-30">
                   <NavLink to="/">Home</NavLink>
                   <NavLink to="/products">Our Store</NavLink>
                   <NavLink to="/my-order">My Order</NavLink>
                   <NavLink to="/blogs">Blogs</NavLink>
-                  <NavLink to="/contact">Contact</NavLink>
+                  {user && (
+                    <button onClick={() => LogOut()} className="logout">
+                      logout
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

@@ -46,17 +46,21 @@
 }
 
 .header-botton .menu-links a,
+.header-botton .menu-links .logout,
 .header-botton .dropdown button {
     color: white;
     font-size: 14px;
     line-height: 18px;
     font-weight: 400;
-    letter-spacing: 0.3;
+    letter-spacing: 0.3px;
     text-transform: uppercase;
     transition: all 0.3s;
+    background-color: transparent;
+    border: none;
 }
 
-.header-botton .menu-links a:hover {
+.header-botton .menu-links a:hover,
+.header-botton .menu-links .a:logout {
     color: var(--color-febd69);
 }
 
