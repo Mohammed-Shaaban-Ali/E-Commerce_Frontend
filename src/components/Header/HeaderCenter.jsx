@@ -23,6 +23,10 @@ const HeaderCenter = () => {
       settotalSum(sum);
     }
   }, [userCartPrduct]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(getCart());
+  }, []);
   return (
     <header className="header-upper  pt-3">
       <div className="container-xxl">

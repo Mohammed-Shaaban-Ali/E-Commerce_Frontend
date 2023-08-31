@@ -83,6 +83,16 @@ export const creatOrder = createAsyncThunk(
     }
   }
 );
+export const getMyOrder = createAsyncThunk(
+  "users/getMyOrder",
+  async (thunkAPI) => {
+    try {
+      return await authService.getMyOrder();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export const resetState = createAction("Reset_all");
 
@@ -228,6 +238,20 @@ const authSlice = createSlice({
         }
       })
       .addCase(creatOrder.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.isSuccess = false;
+      })
+
+      .addCase(getMyOrder.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getMyOrder.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.getmyorder = action.payload;
+      })
+      .addCase(getMyOrder.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.isSuccess = false;
