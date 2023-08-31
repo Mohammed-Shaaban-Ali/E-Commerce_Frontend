@@ -6,7 +6,7 @@ import { object, string } from "yup";
 import SEO from "../../components/SEO";
 import BreadCrumb from "../../components/BreadCrumb";
 import { Link } from "react-router-dom";
-import { login, resetState } from "../../redux/slices/authSlice";
+import { login } from "../../redux/slices/authSlice";
 import CustomInput from "../../components/CustomInput";
 
 let userSchema = object({
@@ -29,9 +29,13 @@ const Login = () => {
     validationSchema: userSchema,
     onSubmit: (values) => {
       dispatch(login(values));
+
       setTimeout(() => {
-        navigate("/");
-      }, 100);
+        if (isSuccess) {
+          navigate("/");
+          window.location.reload();
+        }
+      }, 200);
       formik.resetForm();
     },
   });

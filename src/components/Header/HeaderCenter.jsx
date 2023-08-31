@@ -25,7 +25,7 @@ const HeaderCenter = () => {
   }, [userCartPrduct]);
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getCart());
+    if (user) dispatch(getCart());
   }, []);
   return (
     <header className="header-upper  pt-3">
