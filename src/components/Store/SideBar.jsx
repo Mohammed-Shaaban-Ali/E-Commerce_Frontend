@@ -3,20 +3,40 @@ import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import camera from "../../images/camera.jpg";
 import speaker from "../../images/speaker.jpg";
-const SideBar = () => {
+import { useEffect, useState } from "react";
+
+const SideBar = ({
+  maxPrice,
+  setmaxPrice,
+  categories,
+  brands,
+  tags,
+  minPrice,
+  setminPrice,
+  products,
+  settag,
+  setcategory,
+  setBrand,
+}) => {
   return (
     <div className="col-3">
       <div className="filter-card mb-3">
         <h5>Shop By Categories</h5>
         <div className="d-flex flex-column gap-15 ">
-          <Link to="/">Home</Link>
-          <Link to="/store">Our Store</Link>
-          <Link to="/Blogs">Blogs</Link>
-          <Link to="/Contact">Contact</Link>
+          {categories &&
+            [...new Set(categories)].map((item, i) => (
+              <li
+                className="category"
+                onClick={() => setcategory(item)}
+                key={i}
+              >
+                {item}
+              </li>
+            ))}
         </div>
       </div>
 
-      <div className="filter-card mb-3">
+      <div className="filter-card border-card mb-3">
         <h5>Filter By</h5>
 
         <div className="d-flex flex-column gap-15 ">
@@ -27,7 +47,7 @@ const SideBar = () => {
                 <Form.Check
                   type="checkbox"
                   id="default-checkbox"
-                  label="In stock (1)"
+                  label={`In stock (${products?.length})`}
                 />
 
                 <Form.Check
@@ -46,37 +66,22 @@ const SideBar = () => {
             <div className="form d-flex gap-10 align-items-center ">
               <Form className="d-flex gap-15 align-items-center justify-content-between">
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control type="text" placeholder="Form" />
+                  <Form.Control
+                    type="number"
+                    placeholder="Form"
+                    value={minPrice}
+                    onChange={(e) => setminPrice(e.target.value)}
+                  />
                 </Form.Group>
                 <Form.Group className="mb-3 " controlId="formBasicEmail">
-                  <Form.Control type="text" placeholder="To" />
+                  <Form.Control
+                    type="number"
+                    value={maxPrice}
+                    onChange={(e) => setmaxPrice(e.target.value)}
+                    placeholder="To"
+                  />
                 </Form.Group>
               </Form>
-            </div>
-          </div>
-        </div>
-
-        <div className="d-flex flex-column gap-15 ">
-          <div className="color">
-            <h6>Color</h6>
-            <div className="">
-              <div>
-                <ul className="colors ps-0">
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
@@ -102,19 +107,42 @@ const SideBar = () => {
             </Form>
           </div>
         </div>
-      </div>
-
-      <div className="filter-card mb-3">
-        <h5>Product Tags</h5>
-        <div className="d-flex flex-wrap gap-15 ">
-          <span className="product-tag-span">Headphones</span>
-          <span className="product-tag-span">Laptop</span>
-          <span className="product-tag-span">Oppo</span>
-          <span className="product-tag-span">monile</span>
-          <span className="product-tag-span">Vivo</span>
-          <span className="product-tag-span">Writ</span>
+        <div className="d-flex flex-column gap-15 ">
+          <div className=" mb-3">
+            <h6 className="mb-3">Product Brand</h6>
+            <div className="d-flex flex-wrap gap-15 ">
+              {brands &&
+                [...new Set(brands)].map((item, i) => (
+                  <span
+                    onClick={() => setBrand(item)}
+                    className="product-tag-span"
+                    key={i}
+                  >
+                    {item}
+                  </span>
+                ))}
+            </div>
+          </div>
+        </div>
+        <div className="d-flex flex-column gap-15 ">
+          <div className=" mb-3">
+            <h6 className="mb-3">Product Tags</h6>
+            <div className="d-flex flex-wrap gap-15 ">
+              {tags &&
+                [...new Set(tags)].map((item, i) => (
+                  <span
+                    onClick={() => settag(item)}
+                    className="product-tag-span"
+                    key={i}
+                  >
+                    {item}
+                  </span>
+                ))}
+            </div>
+          </div>
         </div>
       </div>
+
       <div className="filter-card mb-3">
         <h5>Random Product</h5>
         <div className="d-flex flex-wrap flex-column ">

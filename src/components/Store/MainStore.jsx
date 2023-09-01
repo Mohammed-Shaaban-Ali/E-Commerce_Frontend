@@ -5,7 +5,7 @@ import gr2 from "../../images/gr2.svg";
 import gr3 from "../../images/gr3.svg";
 import gr4 from "../../images/gr4.svg";
 
-const MainStore = ({ products }) => {
+const MainStore = ({ sort, setsort, products }) => {
   const [grid, setgrid] = useState(3);
   return (
     <div className="col-9 ">
@@ -13,17 +13,18 @@ const MainStore = ({ products }) => {
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center gap-10">
             <p className="mb-0 ">Sort By:</p>
-            <select name="" className="form-control  form-select" id="">
-              <option value="manual">Featured</option>
-              <option style={{ margin: "20px" }} value="best-selling">
-                Best Selling
-              </option>
-              <option value="title-ascending">Alphabetically, A-Z</option>
-              <option value="title-dsascending">Alphabetically, Z-A</option>
-              <option value="price-ascending">Price, low to high</option>
-              <option value="price-dsascending">Price, high to low</option>
-              <option value="created-ascending">Created, old to new</option>
-              <option value="created-dsascending">Created, old to new</option>
+            <select
+              name=""
+              className="form-control form-select"
+              id=""
+              onChange={(e) => setsort(e.target.value)}
+            >
+              <option value="title">Alphabetically, A-Z</option>
+              <option value="-title">Alphabetically, Z-A</option>
+              <option value="price">Price, low to high</option>
+              <option value="-price">Price, high to low</option>
+              <option value="createdAt">Created, old to new</option>
+              <option value="-createdAt">Created, old to new</option>
             </select>
           </div>
 

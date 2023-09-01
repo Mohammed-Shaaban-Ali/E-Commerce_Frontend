@@ -90,3 +90,7 @@ a {
     font-size: 14px;
     padding: 4px 8px;
 }
+
+li {
+    list-style: none;
+}
