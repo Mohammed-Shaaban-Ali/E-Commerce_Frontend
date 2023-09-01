@@ -17,7 +17,7 @@ let userSchema = object({
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, isLoading, isSuccess, message } = useSelector(
+  const { user, isError, isLoading, isSuccess, message } = useSelector(
     (state) => state.auth
   );
 

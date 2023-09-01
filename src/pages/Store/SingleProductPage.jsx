@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 
 import BreadCrumb from "../../components/BreadCrumb";
 import Features from "../../components/Home/Features";
@@ -16,7 +17,6 @@ import { LiaRulerSolid } from "react-icons/lia";
 import { SiMaterialdesignicons } from "react-icons/si";
 import { Accordion } from "react-bootstrap";
 
-import React, { useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -33,7 +33,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
 import {
+  addRating,
   addToWishList,
+  getProducts,
   getsingleProduct,
 } from "../../redux/slices/productSlice";
 import { addCart, getCart } from "../../redux/slices/authSlice";
@@ -41,25 +43,31 @@ import Color from "../../components/Store/Color";
 import { toast } from "react-toastify";
 
 const SingleProductPage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { pathname } = useLocation();
   const productId = pathname.split("/")[2];
 
   const [oprderProduct, setOprderProduct] = useState(true);
   const [reviweForm, setreviweForm] = useState(false);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
   const [quantity, setQuantity] = useState(1);
   const [color, setcolor] = useState(null);
   const [alredyadd, setAlredyadd] = useState(false);
-
-  const dispatch = useDispatch();
+  const [ratingData, setratingData] = useState({
+    star: 0,
+    comment: "",
+    prodId: productId,
+  });
   const { singleProduct } = useSelector((state) => state.products);
   const { userCartPrduct } = useSelector((state) => state.auth);
+  const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getsingleProduct(productId));
     dispatch(getCart());
+    dispatch(getProducts());
+    dispatch(getsingleProduct(productId));
   }, []);
 
   useEffect(() => {
@@ -86,6 +94,21 @@ const SingleProductPage = () => {
   };
   const addWishList = (id) => {
     dispatch(addToWishList(id));
+  };
+
+  const addRatingToProduct = () => {
+    if (ratingData.star === 0) {
+      toast.error("Enter Star Rating");
+    } else if (ratingData.comment === "") {
+      toast.error("write Review About The Project");
+    } else {
+      dispatch(addRating(ratingData));
+      setTimeout(() => {
+        dispatch(getsingleProduct(productId));
+        setratingData({ star: 0, comment: "", prodId: productId });
+        setreviweForm(false);
+      }, 300);
+    }
   };
 
   return (
@@ -208,10 +231,12 @@ const SingleProductPage = () => {
                         count={5}
                         edit={false}
                         size={24}
-                        value={singleProduct?.totalrating.toString()}
+                        value={singleProduct?.totalrating}
                         activeColor="#ffd700"
                       />
-                      <p className="mb-0">(2 reviews)</p>
+                      <p className="mb-0">
+                        ({singleProduct?.ratings?.length} reviews )
+                      </p>
                     </div>
                     <p>Write a reviews</p>
                   </div>
@@ -415,11 +440,14 @@ const SingleProductPage = () => {
                     <div className=" d-flex align-items-center gap-10">
                       <ReactStars
                         count={5}
-                        edit={true}
+                        edit={false}
                         size={24}
                         activeColor="#ffd700"
+                        value={singleProduct?.totalrating}
                       />
-                      <p className="mb-0">Based on 2 Reviews</p>
+                      <p className="mb-0">
+                        Based on {singleProduct?.ratings?.length} Reviews
+                      </p>
                     </div>
                   </div>
                   {oprderProduct && (
@@ -438,25 +466,8 @@ const SingleProductPage = () => {
                   )}
                 </div>
                 {reviweForm && (
-                  <form className="review-form d-flex flex-column gap-30">
+                  <div className="review-form d-flex flex-column gap-30">
                     <h4>Wirte a Review</h4>
-                    <div className="">
-                      <h5>Name</h5>
-                      <input
-                        className="form-control"
-                        type="text"
-                        placeholder="Enter Your Name"
-                      />
-                    </div>
-
-                    <div className="">
-                      <h5>Email</h5>
-                      <input
-                        className="form-control"
-                        type="email"
-                        placeholder="emailname@gmail.com"
-                      />
-                    </div>
 
                     <div className="">
                       <h5>Rating</h5>
@@ -465,15 +476,10 @@ const SingleProductPage = () => {
                         edit={true}
                         size={24}
                         activeColor="#ffd700"
-                      />
-                    </div>
-
-                    <div className="">
-                      <h5>Review Title</h5>
-                      <input
-                        className="form-control"
-                        type="text"
-                        placeholder="Give your review atitle"
+                        value={ratingData?.star}
+                        onChange={(e) =>
+                          setratingData({ ...ratingData, star: e })
+                        }
                       />
                     </div>
 
@@ -483,49 +489,51 @@ const SingleProductPage = () => {
                         style={{ height: "200px" }}
                         className="form-control"
                         placeholder="Write your comments here"
+                        value={ratingData.comment}
+                        onChange={(e) =>
+                          setratingData({
+                            ...ratingData,
+                            comment: e.target.value,
+                          })
+                        }
                       />
-                      <button style={{ marginTop: "24px" }} className="button">
+                      <button
+                        onClick={() => addRatingToProduct()}
+                        style={{ marginTop: "24px" }}
+                        className="button"
+                      >
                         Submit Review
                       </button>
                     </div>
-                  </form>
+                  </div>
                 )}
-                <div className="review-list">
-                  <div className="review-comment">
-                    <ReactStars
-                      count={5}
-                      edit={true}
-                      value={3}
-                      size={24}
-                      activeColor="#ffd700"
-                    />
-                    <h4>Good</h4>
-                    <p>
-                      <span>aaaaaaa</span> on <span>Aug29,2022</span>
-                    </p>
-                    <p>saasas</p>
-                  </div>
-                  <div className="review-comment">
-                    <ReactStars
-                      count={5}
-                      edit={true}
-                      value={3}
-                      size={24}
-                      activeColor="#ffd700"
-                    />
-                    <h4>Good</h4>
-                    <p>
-                      <span>aaaaaaa</span> on <span>Aug29,2022</span>
-                    </p>
-                    <p>saasas</p>
-                  </div>
+                <div className="review-list mt-5">
+                  {singleProduct?.ratings &&
+                    singleProduct?.ratings?.map((item, index) => (
+                      <div key={index} className="review-comment">
+                        <div className="d-flex flex-row gap-15">
+                          <h5 className="mb-0">
+                            {item?.name ? item?.name : ""}
+                          </h5>
+                          <ReactStars
+                            count={5}
+                            edit={false}
+                            value={item?.star}
+                            size={24}
+                            activeColor="#ffd700"
+                          />
+                        </div>
+                        <p>{item?.comment}</p>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <Features />
+
+      <Features products={products ? products : []} />
     </>
   );
 };
