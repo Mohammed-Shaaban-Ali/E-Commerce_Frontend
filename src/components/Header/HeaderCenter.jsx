@@ -10,7 +10,7 @@ import wishlist from "../../images/wishlist.svg";
 import userimage from "../../images/user.svg";
 import cart from "../../images/cart.svg";
 import { getCart } from "../../redux/slices/authSlice";
-import { getProducts } from "../../redux/slices/productSlice";
+import { getProducts, getsingleProduct } from "../../redux/slices/productSlice";
 
 const HeaderCenter = () => {
   const dispatch = useDispatch();
@@ -65,9 +65,8 @@ const HeaderCenter = () => {
                 labelKey="name"
                 onChange={(e) => {
                   navigate(`/product/${e[0]?.productId}`);
-                  setTimeout(() => {
-                    window.location.reload();
-                  }, 300);
+                  if (e[0]?.productId)
+                    dispatch(getsingleProduct(e[0]?.productId));
                 }}
                 minLength={1}
                 placeholder="Search Product Here..."

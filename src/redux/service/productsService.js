@@ -29,9 +29,23 @@ const getsingleProduct = async (id) => {
     console.log(error.request.data.message);
   }
 };
+
+const addRating = async (Data) => {
+  try {
+    const { data } = await request.put(
+      `/api/product/rating`,
+      Data,
+      ConfigToken
+    );
+    return data;
+  } catch (error) {
+    console.log(error.request.data.message);
+  }
+};
 const productsService = {
   getProducts,
   addToWishList,
   getsingleProduct,
+  addRating,
 };
 export default productsService;
