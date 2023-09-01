@@ -9,16 +9,23 @@
     margin-bottom: 20px;
 }
 
-.filter-card div a {
+.filter-card div .category {
     color: gray;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .filter-card>div {
     padding: 10px;
 }
 
-.filter-card div a:hover {
+.border-card h6 {
+    margin: 8px 0;
+    padding-top: 8px;
+    border-top: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.filter-card div .category:hover {
     color: black;
     font-weight: bold;
 }
