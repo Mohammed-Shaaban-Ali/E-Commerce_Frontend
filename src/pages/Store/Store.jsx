@@ -6,6 +6,7 @@ import MainStore from "../../components/Store/MainStore";
 import SideBar from "../../components/Store/SideBar";
 import "./Store.css";
 import { getProducts } from "../../redux/slices/productSlice";
+import Reloader from "../../components/Reloader";
 
 const Store = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Store = () => {
   const [minPrice, setminPrice] = useState(null);
   const [maxPrice, setmaxPrice] = useState(null);
   const [sort, setsort] = useState(null);
-  const { products } = useSelector((state) => state.products);
+  const { products, isLoading } = useSelector((state) => state.products);
 
   useEffect(() => {
     getproducts();
@@ -47,32 +48,36 @@ const Store = () => {
     <>
       <SEO title=" Our Store " />
       <BreadCrumb title="Our Store" />
-      <div className="store-wrapper home-wrapper-2 py-5">
-        <div className="container-xxl">
-          <div className="row">
-            <SideBar
-              brands={brands}
-              categories={categories}
-              tags={tags}
-              products={products}
-              minPrice={minPrice}
-              maxPrice={maxPrice}
-              setmaxPrice={setmaxPrice}
-              setminPrice={setminPrice}
-              sort={sort}
-              setsort={setsort}
-              setBrand={setBrand}
-              settag={settag}
-              setcategory={setcategory}
-            />
-            <MainStore
-              sort={sort}
-              setsort={setsort}
-              products={products ? products : []}
-            />
+      {isLoading ? (
+        <Reloader />
+      ) : (
+        <div className="store-wrapper home-wrapper-2 py-5">
+          <div className="container-xxl">
+            <div className="row">
+              <SideBar
+                brands={brands}
+                categories={categories}
+                tags={tags}
+                products={products}
+                minPrice={minPrice}
+                maxPrice={maxPrice}
+                setmaxPrice={setmaxPrice}
+                setminPrice={setminPrice}
+                sort={sort}
+                setsort={setsort}
+                setBrand={setBrand}
+                settag={settag}
+                setcategory={setcategory}
+              />
+              <MainStore
+                sort={sort}
+                setsort={setsort}
+                products={products ? products : []}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

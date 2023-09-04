@@ -41,6 +41,7 @@ import {
 import { addCart, getCart } from "../../redux/slices/authSlice";
 import Color from "../../components/Store/Color";
 import { toast } from "react-toastify";
+import Reloader from "../../components/Reloader";
 
 const SingleProductPage = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const SingleProductPage = () => {
     comment: "",
     prodId: productId,
   });
-  const { singleProduct } = useSelector((state) => state.products);
+  const { singleProduct, isLoading } = useSelector((state) => state.products);
   const { userCartPrduct } = useSelector((state) => state.auth);
   const { products } = useSelector((state) => state.products);
 

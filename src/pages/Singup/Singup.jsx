@@ -8,6 +8,7 @@ import BreadCrumb from "../../components/BreadCrumb";
 import CustomInput from "../../components/CustomInput";
 import { register } from "../../redux/slices/authSlice";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 let userSchema = object({
   firstName: string().required("First Name is required"),
@@ -34,10 +35,16 @@ const Singup = () => {
     validationSchema: userSchema,
     onSubmit: (values) => {
       dispatch(register(values));
-      formik.resetForm();
-      navigate("/login");
     },
   });
+
+  useEffect(() => {
+    if (registerData && isSuccess) {
+      formik.resetForm();
+      navigate("/login");
+      toast.success("Created account Success");
+    }
+  }, [registerData, isSuccess]);
 
   return (
     <>
