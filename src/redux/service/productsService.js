@@ -17,7 +17,7 @@ const getProducts = async (filter) => {
     return data;
   } catch (error) {
     // console.log(error)
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 const addToWishList = async (prodId) => {
@@ -29,7 +29,7 @@ const addToWishList = async (prodId) => {
     );
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 const getsingleProduct = async (id) => {
@@ -37,7 +37,7 @@ const getsingleProduct = async (id) => {
     const { data } = await request.get(`/api/product/${id}`);
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 
@@ -50,7 +50,7 @@ const addRating = async (Data) => {
     );
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 const productsService = {

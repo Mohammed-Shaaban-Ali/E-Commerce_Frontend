@@ -13,11 +13,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogs } from "../../redux/slices/blogSlice";
 import { getProducts } from "../../redux/slices/productSlice";
 import { getCart } from "../../redux/slices/authSlice";
+import Reloader from "../../components/Reloader";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { blogs } = useSelector((state) => state.blog);
-  const { products } = useSelector((state) => state.products);
+  const { products, isLoading } = useSelector((state) => state.products);
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -29,14 +30,20 @@ const Home = () => {
   return (
     <>
       <SEO title=" Home " />
-      <Banner />
-      <Servies />
-      <Categories />
-      <Features products={products ? products : []} />
-      <Cards />
-      <SpecialWrapper products={products ? products : []} />
-      <Marque />
-      <Blog blogs={blogs} />
+      {isLoading ? (
+        <Reloader />
+      ) : (
+        <>
+          <Banner />
+          <Servies />
+          <Categories />
+          <Features products={products ? products : []} />
+          <Cards />
+          <SpecialWrapper products={products ? products : []} />
+          <Marque />
+          <Blog blogs={blogs} />
+        </>
+      )}
     </>
   );
 };

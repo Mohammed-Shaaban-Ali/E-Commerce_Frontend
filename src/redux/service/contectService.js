@@ -7,7 +7,7 @@ const addComment = async (comment) => {
     const { data } = await request.post("/api/enquiry/", comment);
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 

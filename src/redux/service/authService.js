@@ -1,5 +1,6 @@
 import request from "../../utils/request";
 import { ConfigToken } from "../../utils/validateToken";
+import { toast } from "react-toastify";
 
 const login = async (userData) => {
   try {
@@ -7,16 +8,17 @@ const login = async (userData) => {
     if (data) {
       localStorage.setItem("normalUser", JSON.stringify(data));
     }
-    toast.success("Login Success");
+    return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 const register = async (userData) => {
   try {
     const { data } = await request.post("/api/user/register", userData);
+    return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 
@@ -25,7 +27,7 @@ const getWishlist = async () => {
     const { data } = await request.get("/api/user/wishlist", ConfigToken);
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 const addCart = async (cartdata) => {
@@ -37,7 +39,7 @@ const addCart = async (cartdata) => {
     );
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 const getCart = async () => {
@@ -45,7 +47,7 @@ const getCart = async () => {
     const { data } = await request.get("/api/user/cart", ConfigToken);
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 
@@ -57,7 +59,7 @@ const removeProductCart = async (id) => {
     );
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 const updateProductCartUsingQuantity = async (cartData) => {
@@ -71,7 +73,7 @@ const updateProductCartUsingQuantity = async (cartData) => {
     );
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 
@@ -84,7 +86,7 @@ const creatOrder = async (orderData) => {
     );
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 
@@ -93,7 +95,7 @@ const getMyOrder = async () => {
     const { data } = await request.get(`/api/user/cart/myorder`, ConfigToken);
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 
@@ -110,7 +112,7 @@ const updateMyProfile = async (Data) => {
     }
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 
@@ -122,20 +124,19 @@ const forgotPassword = async (Data) => {
     );
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
   }
 };
 
 const resetPassword = async (Data) => {
   const { token, password } = Data;
-  console.log(password);
   try {
     const { data } = await request.put(`/api/user/reset-password/${token}`, {
       password,
     });
     return data;
   } catch (error) {
-    toast.error(error);
+    toast.error(error?.response?.data?.message);
   }
 };
 

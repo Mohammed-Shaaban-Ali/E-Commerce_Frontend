@@ -8,6 +8,8 @@ import BreadCrumb from "../../components/BreadCrumb";
 import { Link } from "react-router-dom";
 import { login } from "../../redux/slices/authSlice";
 import CustomInput from "../../components/CustomInput";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 let userSchema = object({
   email: string().email().required("Email is required"),
@@ -29,16 +31,15 @@ const Login = () => {
     validationSchema: userSchema,
     onSubmit: (values) => {
       dispatch(login(values));
-
-      setTimeout(() => {
-        if (isSuccess) {
-          navigate("/");
-          window.location.reload();
-        }
-      }, 200);
-      formik.resetForm();
     },
   });
+  useEffect(() => {
+    if (user && isSuccess) {
+      formik.resetForm();
+      navigate("/");
+      window.location.reload();
+    }
+  }, [user, isSuccess]);
   return (
     <>
       <SEO title="Login" />
