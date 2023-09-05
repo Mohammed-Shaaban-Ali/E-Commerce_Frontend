@@ -6,10 +6,6 @@ import Features from "../../components/Home/Features";
 import SEO from "../../components/SEO";
 import ReactStars from "react-rating-stars-component";
 import { GlassMagnifier } from "react-image-magnifiers";
-import product1 from "../../images/product1.png";
-import product2 from "../../images/product2.png";
-import product3 from "../../images/product3.png";
-import product4 from "../../images/product4.png";
 import { BsHeart } from "react-icons/bs";
 import { TbGitCompare } from "react-icons/tb";
 import { LiaShippingFastSolid } from "react-icons/lia";
@@ -41,7 +37,6 @@ import {
 import { addCart, getCart } from "../../redux/slices/authSlice";
 import Color from "../../components/Store/Color";
 import { toast } from "react-toastify";
-import Reloader from "../../components/Reloader";
 
 const SingleProductPage = () => {
   const dispatch = useDispatch();
@@ -61,9 +56,10 @@ const SingleProductPage = () => {
     comment: "",
     prodId: productId,
   });
-  const { singleProduct, isLoading } = useSelector((state) => state.products);
+  const { singleProduct, isLoading, products } = useSelector(
+    (state) => state.products
+  );
   const { userCartPrduct } = useSelector((state) => state.auth);
-  const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(getCart());
@@ -77,7 +73,7 @@ const SingleProductPage = () => {
         setAlredyadd(true);
       }
     }
-  }, []);
+  }, [userCartPrduct, productId]);
 
   const addToCart = (product) => {
     if (!color) toast.error("choose a color");
@@ -134,55 +130,22 @@ const SingleProductPage = () => {
                   className="mySwiper2"
                 >
                   <div>
-                    <SwiperSlide className="p-5">
-                      <GlassMagnifier
-                        allowOverflow={true}
-                        magnifierBorderColor="black"
-                        magnifierSize="250px"
-                        square={false}
-                        imageSrc={product1}
-                        imageAlt="Example"
-                        largeImageSrc={product1} // Optional
-                      />
-                    </SwiperSlide>
-
-                    <SwiperSlide className="p-5">
-                      <GlassMagnifier
-                        magnifierBorderColor="black"
-                        allowOverflow={true}
-                        magnifierSize="250px"
-                        square={false}
-                        imageSrc={product2}
-                        imageAlt="Example"
-                        largeImageSrc={product2} // Optional
-                      />
-                    </SwiperSlide>
-
-                    <SwiperSlide className="p-5">
-                      <GlassMagnifier
-                        magnifierBorderColor="black"
-                        allowOverflow={true}
-                        magnifierSize="250px"
-                        square={false}
-                        imageSrc={product3}
-                        imageAlt="Example"
-                        largeImageSrc={product3} // Optional
-                      />
-                    </SwiperSlide>
-
-                    <SwiperSlide className="p-5">
-                      <GlassMagnifier
-                        magnifierBorderColor="black"
-                        allowOverflow={true}
-                        magnifierSize="250px"
-                        square={false}
-                        imageSrc={product4}
-                        imageAlt="Example"
-                        largeImageSrc={product4} // Optional
-                      />
-                    </SwiperSlide>
+                    {singleProduct?.images?.map((item, index) => (
+                      <SwiperSlide key={index} className="p-5">
+                        <GlassMagnifier
+                          allowOverflow={true}
+                          magnifierBorderColor="black"
+                          magnifierSize="250px"
+                          square={false}
+                          imageSrc={item?.url}
+                          imageAlt="Example"
+                          largeImageSrc={item?.url} // Optional
+                        />
+                      </SwiperSlide>
+                    ))}
                   </div>
                 </Swiper>
+
                 <Swiper
                   onSwiper={setThumbsSwiper}
                   spaceBetween={10}
@@ -192,36 +155,18 @@ const SingleProductPage = () => {
                   modules={[FreeMode, Navigation, Thumbs]}
                   className="mySwiper"
                 >
-                  <SwiperSlide>
-                    <img
-                      alt="product"
-                      src={product1}
-                      className="image-small img-fluid"
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      alt="product"
-                      src={product2}
-                      className="image-small img-fluid"
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      alt="product"
-                      src={product3}
-                      className="image-small img-fluid"
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      alt="product"
-                      src={product4}
-                      className="image-small img-fluid"
-                    />
-                  </SwiperSlide>
+                  {singleProduct?.images?.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <img
+                        alt="product"
+                        src={item?.url}
+                        className="image-small img-fluid"
+                      />
+                    </SwiperSlide>
+                  ))}
                 </Swiper>
               </div>
+
               <div className="col-6">
                 <div className="main-product-details d-flex flex-column gap-10">
                   <h5>{singleProduct?.title}</h5>
