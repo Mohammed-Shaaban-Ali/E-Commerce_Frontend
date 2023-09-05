@@ -5,8 +5,7 @@ import prodcompare from "../../images/prodcompare.svg";
 import view from "../../images/view.svg";
 import addcart from "../../images/add-cart.svg";
 import wish from "../../images/wish.svg";
-import watch from "../../images/watch.jpg";
-import watch2 from "../../images/watch2.png";
+
 import { addToWishList } from "../../redux/slices/productSlice";
 
 const CardProducts = ({ grid, product }) => {
@@ -37,7 +36,14 @@ const CardProducts = ({ grid, product }) => {
           </div>
           <div className="product-image">
             <img src={product?.images[0]?.url} alt="watch" />
-            <img src={watch2} alt="watch2" />
+            <img
+              src={
+                product?.images[1]?.url
+                  ? product?.images[1]?.url
+                  : product?.images[0]?.url
+              }
+              alt="watch2"
+            />
           </div>
           <div className="action-bar position-absolute">
             <div
@@ -63,11 +69,13 @@ const CardProducts = ({ grid, product }) => {
           className={grid === 12 ? "product-contant my-3" : "product-contant"}
         >
           <h6>{product?.brand}</h6>
-          <h5 className={grid === 12 ? `full-h5` : ""}>
-            {product?.title.length >= 40
-              ? product?.title.substr(0, 40) + "..."
-              : product?.title}
-          </h5>
+          <Link to={`/product/${product?._id}`}>
+            <h5 className={grid === 12 ? `full-h5` : ""}>
+              {product?.title.length >= 40
+                ? product?.title.substr(0, 40) + "..."
+                : product?.title}
+            </h5>
+          </Link>
           <p
             className={grid === 12 || grid === 6 ? ` mb-0 full-p` : "d-none"}
             dangerouslySetInnerHTML={{
@@ -80,7 +88,7 @@ const CardProducts = ({ grid, product }) => {
           <ReactStars
             count={5}
             onChange={() => {}}
-            value={product?.totalrating.toString()}
+            value={product?.totalrating}
             edit={false}
             size={24}
             activeColor="#ffd700"
