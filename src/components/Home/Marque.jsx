@@ -10,7 +10,7 @@ import brand_07 from "../../images/brand-07.png";
 import brand_08 from "../../images/brand-08.png";
 const Marque = () => {
   return (
-    <section className="marque-wrapper py-5">
+    <section className="marque-wrapper py-4">
       <div className="container-xxl">
         <Marquee>
           <div className="d-flex ">

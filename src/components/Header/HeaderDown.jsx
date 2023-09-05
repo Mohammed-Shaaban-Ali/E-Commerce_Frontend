@@ -5,8 +5,23 @@ import menu from "../../images/menu.svg";
 import { Dropdown } from "react-bootstrap";
 import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
+import { useState } from "react";
+import { useEffect } from "react";
 const HeaderDown = () => {
   const { user } = useSelector((state) => state.auth);
+  const [categories, setcategories] = useState(null);
+
+  const { products } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    let newCategories = [];
+    for (let i = 0; i < products?.length; i++) {
+      const element = products[i];
+      newCategories.push(element?.category);
+    }
+    setcategories(newCategories);
+  }, [products]);
+
   const LogOut = () => {
     localStorage.removeItem("normalUser");
     window.location.reload();
@@ -33,21 +48,13 @@ const HeaderDown = () => {
                     className="dropdown-menu"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <li>
-                      <Link className="dropdown-item text-white" to="/">
-                        Action
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item text-white" to="/">
-                        Action
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item text-white" to="/">
-                        Action
-                      </Link>
-                    </li>
+                    {categories?.map((category, index) => (
+                      <li>
+                        <Link key={index} className="dropdown-item text-white">
+                          {category}
+                        </Link>
+                      </li>
+                    ))}
                   </DropdownMenu>
                 </Dropdown>
                 <div className="line"></div>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const request = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://exuberant-tuna-waistcoat.cyclic.app",
 });
 
 export default request;

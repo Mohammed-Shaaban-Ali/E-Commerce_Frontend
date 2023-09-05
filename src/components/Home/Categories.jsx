@@ -8,7 +8,7 @@ import laptop from "../../images/laptop.jpg";
 
 const Categories = () => {
   return (
-    <section className="home-wrapper-2 py-5">
+    <section className="home-wrapper-2 py-4">
       <div className="container-xxl ">
         <div className="row">
           <div className="col-12">

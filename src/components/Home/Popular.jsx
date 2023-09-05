@@ -1,14 +1,14 @@
 import React from "react";
 import CardProducts from "./CardProducts";
 
-const Features = ({ products }) => {
+const Popular = ({ products }) => {
   return (
     <section className="products py-4 home-wrapper-2">
       <div className="container-xxl ">
-        <h6>Featured Collection</h6>
+        <h6>Popular Collection</h6>
         <div className="row">
           {products?.map((product, index) => {
-            if (product?.tags == "featured") {
+            if (product?.tags == "popular") {
               return <CardProducts key={index} product={product} />;
             }
           })}
@@ -18,4 +18,4 @@ const Features = ({ products }) => {
   );
 };
 
-export default Features;
+export default Popular;

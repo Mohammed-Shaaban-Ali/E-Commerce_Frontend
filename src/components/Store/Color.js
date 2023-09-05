@@ -3,7 +3,14 @@ import React from "react";
 const Color = ({ colors, setcolor, id }) => {
   //   console.log(id, colors[0]?._id);
   return (
-    <ul style={{ listStyle: "none", cursor: "pointer" }}>
+    <ul
+      style={{
+        display: "flex",
+        gap: "8px",
+        listStyle: "none",
+        cursor: "pointer",
+      }}
+    >
       {colors?.map((color, index) => (
         <li
           onClick={() => setcolor(color._id)}

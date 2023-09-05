@@ -3,7 +3,7 @@ import BlogCart from "./BlogCart";
 
 const Blog = ({ blogs }) => {
   return (
-    <section className="blog py-5 home-wrapper-2">
+    <section className="blog py-4 home-wrapper-2">
       <div className="container-xxl ">
         <h6>Our Lastest News</h6>
         <div className="row">

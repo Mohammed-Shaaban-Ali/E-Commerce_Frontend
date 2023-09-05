@@ -14,9 +14,13 @@ import { getAllBlogs } from "../../redux/slices/blogSlice";
 import { getProducts } from "../../redux/slices/productSlice";
 import { getCart } from "../../redux/slices/authSlice";
 import Reloader from "../../components/Reloader";
+import Popular from "../../components/Home/Popular";
+import { useState } from "react";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const [categories, setcategories] = useState(null);
+
   const { blogs } = useSelector((state) => state.blog);
   const { products, isLoading } = useSelector((state) => state.products);
   const { user } = useSelector((state) => state.auth);
@@ -27,6 +31,15 @@ const Home = () => {
     dispatch(getAllBlogs());
     dispatch(getProducts());
   }, []);
+  useEffect(() => {
+    let newCategories = [];
+
+    for (let i = 0; i < products?.length; i++) {
+      const element = products[i];
+      newCategories.push(element?.category);
+    }
+    setcategories(newCategories);
+  }, [products]);
   return (
     <>
       <SEO title=" Home " />
@@ -38,9 +51,10 @@ const Home = () => {
           <Servies />
           <Categories />
           <Features products={products ? products : []} />
-          <Cards />
-          <SpecialWrapper products={products ? products : []} />
           <Marque />
+          <SpecialWrapper products={products ? products : []} />
+          <Cards />
+          <Popular products={products ? products : []} />
           <Blog blogs={blogs} />
         </>
       )}
