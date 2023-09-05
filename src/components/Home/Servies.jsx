@@ -8,7 +8,7 @@ import service_05 from "../../images/service-05.png";
 
 const Servies = () => {
   return (
-    <div className="home-wrapper-2 p-5">
+    <div className="home-wrapper-2 p-4">
       <div className="container-xxl ">
         <div className="row">
           <div className="col-12">

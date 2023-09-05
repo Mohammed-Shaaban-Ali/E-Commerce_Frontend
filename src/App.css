@@ -102,3 +102,8 @@ li {
     align-items: center;
     justify-content: center;
 }
+
+
+img {
+    object-fit: cover;
+}

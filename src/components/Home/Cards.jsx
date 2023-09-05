@@ -5,7 +5,7 @@ import cart4 from "../../images/cart4.png";
 
 const Cards = () => {
   return (
-    <section className="home-wrapper-2 py-5">
+    <section className="home-wrapper-2 py-4">
       <div className="container-xxl ">
         <div className="row">
           <div className="col-12">

@@ -62,9 +62,11 @@ const SingleProductPage = () => {
   const { userCartPrduct } = useSelector((state) => state.auth);
 
   useEffect(() => {
+    dispatch(getsingleProduct(productId));
+  }, [productId]);
+  useEffect(() => {
     dispatch(getCart());
     dispatch(getProducts());
-    dispatch(getsingleProduct(productId));
   }, []);
 
   useEffect(() => {
