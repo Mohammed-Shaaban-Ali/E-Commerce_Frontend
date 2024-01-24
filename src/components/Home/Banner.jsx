@@ -8,12 +8,12 @@ const Banner = () => {
   return (
     <section className="home-wrapper-1 py-5">
       <div className="container-xxl">
-        <div className="row">
-          <div className="col-6">
+        <div className="row banarres">
+          <div className="col-6 banardev">
             <Slider />
           </div>
 
-          <div className="col-6">
+          <div className="col-6 banardev">
             <div className="d-flex flex-wrap gap-10 justify-content-between align-items-center">
               <div className="small-banner position-relative ">
                 <img

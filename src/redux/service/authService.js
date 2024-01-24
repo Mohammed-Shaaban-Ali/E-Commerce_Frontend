@@ -13,6 +13,7 @@ const login = async (userData) => {
     toast.error(error?.response?.data?.message);
   }
 };
+
 const register = async (userData) => {
   try {
     const { data } = await request.post("/api/user/register", userData);

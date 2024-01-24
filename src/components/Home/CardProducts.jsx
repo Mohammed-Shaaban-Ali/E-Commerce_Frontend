@@ -15,7 +15,7 @@ const CardProducts = ({ grid, product }) => {
     dispatch(addToWishList(id));
   };
   return (
-    <div className={pathname === "/products" ? `col-${grid} ` : "col-2 mb-3"}>
+    <div className={pathname === "/products" ? `col-${grid} ` : "col-2 w100 mb-3"}>
       <div
         className={
           grid === 6 || grid === 12

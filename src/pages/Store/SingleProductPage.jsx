@@ -59,7 +59,7 @@ const SingleProductPage = () => {
   const { singleProduct, isLoading, products } = useSelector(
     (state) => state.products
   );
-  const { userCartPrduct } = useSelector((state) => state.auth);
+  const { userCartPrduct, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getsingleProduct(productId));
@@ -398,7 +398,7 @@ const SingleProductPage = () => {
                       </p>
                     </div>
                   </div>
-                  {oprderProduct && (
+                  {user && (
                     <div>
                       <span
                         className="wirterevew"

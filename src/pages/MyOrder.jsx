@@ -6,9 +6,7 @@ import Reloader from "../components/Reloader";
 
 const MyOrder = () => {
   const dispatch = useDispatch();
-  const { getmyorder, isError, isLoading, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
+  const { getmyorder, isLoading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMyOrder());

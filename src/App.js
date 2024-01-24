@@ -21,7 +21,6 @@ import SingleProductPage from "./pages/Store/SingleProductPage";
 import Cart from "./pages/Cart/Cart";
 import CheckOut from "./pages/Cart/CheckOut";
 import { PrivateRoute } from "./routes/PrivateRoute";
-import { openRoute } from "./routes/openRoute";
 import MyOrder from "./pages/MyOrder";
 import Profile from "./pages/Profile";
 

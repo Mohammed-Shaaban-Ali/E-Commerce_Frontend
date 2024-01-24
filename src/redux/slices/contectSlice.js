@@ -1,5 +1,4 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import productsService from "../service/productsService";
 import contectService from "../service/contectService";
 
 export const addComment = createAsyncThunk(

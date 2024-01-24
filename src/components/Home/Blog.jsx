@@ -6,7 +6,7 @@ const Blog = ({ blogs }) => {
     <section className="blog py-4 home-wrapper-2">
       <div className="container-xxl ">
         <h6>Our Lastest News</h6>
-        <div className="row">
+        <div className="row banarres">
           {blogs?.map((item, index) => (
             <BlogCart item={item} key={index} />
           ))}

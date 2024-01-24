@@ -1,12 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-import blog1 from "../../images/blog-1.jpg";
 import moment from "moment";
 
 const BlogCart = ({ item }) => {
   const { pathname } = useLocation();
 
   return (
-    <div className={pathname === "/blogs" ? "col-6 mb-4" : "col-3"}>
+    <div className={pathname === "/blogs" ? "col-6 mb-4 w100" : "col-3 w100"}>
       <div className="blog-card">
         <div className="blog-image">
           <img src={item?.images[0]?.url} alt="blog1" />

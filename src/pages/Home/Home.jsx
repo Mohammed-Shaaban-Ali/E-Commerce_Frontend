@@ -30,7 +30,7 @@ const Home = () => {
     if (user) dispatch(getCart());
     dispatch(getAllBlogs());
     dispatch(getProducts());
-  }, []);
+  }, [dispatch, user]);
   useEffect(() => {
     let newCategories = [];
 

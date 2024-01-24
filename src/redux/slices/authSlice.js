@@ -13,6 +13,7 @@ export const login = createAsyncThunk("users/login", async (user, thunkAPI) => {
     return thunkAPI.rejectWithValue(error);
   }
 });
+
 export const register = createAsyncThunk(
   "users/register",
   async (userData, thunkAPI) => {
@@ -23,6 +24,7 @@ export const register = createAsyncThunk(
     }
   }
 );
+
 export const getWishList = createAsyncThunk(
   "users/getWishList",
   async (thunkAPI) => {
@@ -44,6 +46,7 @@ export const addCart = createAsyncThunk(
     }
   }
 );
+
 export const getCart = createAsyncThunk("users/getCart", async (thunkAPI) => {
   try {
     return await authService.getCart();
@@ -62,6 +65,7 @@ export const removeProductCart = createAsyncThunk(
     }
   }
 );
+
 export const updateProductCartUsingQuantity = createAsyncThunk(
   "users/updateProductCartUsingQuantity",
   async (cartData, thunkAPI) => {
@@ -83,6 +87,7 @@ export const creatOrder = createAsyncThunk(
     }
   }
 );
+
 export const getMyOrder = createAsyncThunk(
   "users/getMyOrder",
   async (thunkAPI) => {

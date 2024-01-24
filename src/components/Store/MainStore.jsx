@@ -5,7 +5,7 @@ import gr2 from "../../images/gr2.svg";
 import gr3 from "../../images/gr3.svg";
 import gr4 from "../../images/gr4.svg";
 
-const MainStore = ({ sort, setsort, products }) => {
+const MainStore = ({  setsort, products }) => {
   const [grid, setgrid] = useState(3);
   return (
     <div className="col-9 ">

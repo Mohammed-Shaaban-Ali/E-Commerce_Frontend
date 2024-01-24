@@ -60,7 +60,7 @@ const HeaderDown = () => {
                 <div className="line"></div>
               </div>
               <div className="menu-links">
-                <div clas className="d-flex align-items-center gap-30">
+                <div className="d-flex align-items-center gap-30">
                   <NavLink to="/">Home</NavLink>
                   <NavLink to="/products">Our Store</NavLink>
                   <NavLink to="/my-order">My Order</NavLink>

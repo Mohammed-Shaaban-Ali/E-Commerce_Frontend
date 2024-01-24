@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
 import request from "../../utils/request";
-import { ConfigToken } from "../../utils/validateToken";
 
 const addComment = async (comment) => {
   try {

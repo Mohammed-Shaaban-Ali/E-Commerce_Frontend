@@ -1,11 +1,10 @@
 import { ProgressBar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import watch from "../../images/watch.jpg";
 import ReactStars from "react-rating-stars-component";
 
 const SpecialProduct = ({ product }) => {
   return (
-    <div className="col-6 mb-3">
+    <div className="col-6 w100 mb-3">
       <div className="spacial-product-card">
         <div className="d-flex justify-content-between">
           <div className="spacial-product-image">

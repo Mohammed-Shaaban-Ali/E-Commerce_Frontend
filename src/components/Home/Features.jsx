@@ -6,9 +6,9 @@ const Features = ({ products }) => {
     <section className="products py-4 home-wrapper-2">
       <div className="container-xxl ">
         <h6>Featured Collection</h6>
-        <div className="row">
+        <div className="row banarres">
           {products?.map((product, index) => {
-            if (product?.tags == "featured") {
+            if (product?.tags === "featured") {
               return <CardProducts key={index} product={product} />;
             }
           })}

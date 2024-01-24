@@ -1,9 +1,7 @@
 import ReactStars from "react-rating-stars-component";
 import { Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import camera from "../../images/camera.jpg";
 import speaker from "../../images/speaker.jpg";
-import { useEffect, useState } from "react";
 
 const SideBar = ({
   maxPrice,
