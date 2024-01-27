@@ -2,7 +2,7 @@ import React from "react";
 
 const HeaderTop = () => {
   return (
-    <header className="header-top-strip py-2">
+    <header className="header-top-strip py-2 dno">
       <div className="container ">
         <div className="row">
           <div className="col-6">

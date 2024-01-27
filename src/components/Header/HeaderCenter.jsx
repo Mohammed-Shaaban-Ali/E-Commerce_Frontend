@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,14 +51,14 @@ const HeaderCenter = () => {
   return (
     <header className="header-upper  pt-3">
       <div className="container-xxl">
-        <div className="row">
-          <div className="col-2">
+        <div className="row banarres">
+          <div className="col-2 dno">
             <h2>
               <Link className="text-white">Dev Corner</Link>
             </h2>
           </div>
 
-          <div className="col-5 ">
+          <div className="col-5 w100">
             <div className="input-group mb-3">
               <Typeahead
                 id="pagination-example"
@@ -77,7 +79,7 @@ const HeaderCenter = () => {
             </div>
           </div>
 
-          <div className="col-5">
+          <div className="col-5 w100">
             <div className="header-upper-links d-flex align-items-center justify-content-around">
               <div>
                 <Link

@@ -118,8 +118,8 @@ const SingleProductPage = () => {
       <div className="main-product-wrapper home-wrapper-2 py-5">
         <div className="container-xxl">
           <div className="bg-white">
-            <div className="row">
-              <div className="col-6">
+            <div className="row banarres">
+              <div className="col-6 w100">
                 <Swiper
                   style={{
                     "--swiper-navigation-color": "#121212",
@@ -169,7 +169,7 @@ const SingleProductPage = () => {
                 </Swiper>
               </div>
 
-              <div className="col-6">
+              <div className="col-6 w100">
                 <div className="main-product-details d-flex flex-column gap-10">
                   <h5>{singleProduct?.title}</h5>
                   <div className="d-flex gap-2 flex-column">
@@ -233,7 +233,7 @@ const SingleProductPage = () => {
                       )}
                     </div>
 
-                    <div className=" d-flex gap-10 align-items-center">
+                    <div className=" d-flex gap-10 align-items-center flex-wrap">
                       {!alredyadd && (
                         <>
                           <h5>Quantity : </h5>

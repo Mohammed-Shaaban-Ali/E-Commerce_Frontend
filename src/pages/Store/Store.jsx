@@ -24,6 +24,7 @@ const Store = () => {
 
   useEffect(() => {
     getproducts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [brand, category, tag, minPrice, maxPrice, sort]);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const Store = () => {
       ) : (
         <div className="store-wrapper home-wrapper-2 py-5">
           <div className="container-xxl">
-            <div className="row">
+            <div className="row banarres">
               <SideBar
                 brands={brands}
                 categories={categories}

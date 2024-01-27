@@ -17,7 +17,7 @@ const SideBar = ({
   setBrand,
 }) => {
   return (
-    <div className="col-3">
+    <div className="col-3 w100">
       <div className="filter-card mb-3">
         <h5>Shop By Categories</h5>
         <div className="d-flex flex-column gap-15 ">
@@ -141,7 +141,7 @@ const SideBar = ({
         </div>
       </div>
 
-      <div className="filter-card mb-3">
+      <div className="filter-card dno mb-3">
         <h5>Random Product</h5>
         <div className="d-flex flex-wrap flex-column ">
           <div className="product d-flex  align-items-center row">

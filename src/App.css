@@ -154,4 +154,22 @@ img {
   .categories > div {
     width: 90% !important;
   }
+  .textcenter {
+    text-align: center;
+  }
+  .iconres {
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .menu-bottom {
+    flex-wrap: wrap;
+    align-items: center !important;
+    justify-content: center;
+  }
+  .dno {
+    display: none !important;
+  }
+  .login-card {
+    width: 100% !important;
+  }
 }
