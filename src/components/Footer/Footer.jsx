@@ -38,7 +38,7 @@ const Footer = () => {
         <div className="container-xxl mb-5">
           <div className="row banarres">
             <div className="col-4 w100">
-              <h4 className="text-white mb-4">Contact Us</h4>
+              <h4 className="text-white textcenter mb-4">Contact Us</h4>
               <div className="footer-link">
                 <div className="text-white-50 fs-6">
                   <span className="mb-2"> Demo Store </span>
@@ -57,7 +57,7 @@ const Footer = () => {
                 <div className="text-white-50 py-2 mb-1">
                   ms7500756@gmail.com
                 </div>
-                <div className="social-icons d-flex align-items-center gap-30 mt-4">
+                <div className=" iconres social-icons d-flex align-items-center gap-30 mt-4">
                   <div className="text-white-50">
                     <BsLinkedin className=" fs-4" />
                   </div>
@@ -75,7 +75,7 @@ const Footer = () => {
             </div>
 
             <div className="col-3 w100">
-              <h4 className="text-white mb-4">Information</h4>
+              <h4 className="text-white textcenter mb-4">Information</h4>
               <div className="footer-link d-flex flex-column">
                 <Link to="/privacy-policy" className="text-white-50 py-2 mb-1">
                   Privacy Policy
@@ -99,7 +99,7 @@ const Footer = () => {
             </div>
 
             <div className="col-3 w100">
-              <h4 className="text-white mb-4">Account</h4>
+              <h4 className="text-white textcenter mb-4">Account</h4>
               <div className="footer-link d-flex flex-column">
                 <Link className="text-white-50 py-2 mb-1">About US</Link>
                 <Link className="text-white-50 py-2 mb-1">Faq</Link>
@@ -108,7 +108,7 @@ const Footer = () => {
             </div>
 
             <div className="col-2 w100">
-              <h4 className="text-white mb-4">Quick Links</h4>
+              <h4 className="text-white textcenter mb-4">Quick Links</h4>
               <div className="footer-link d-flex flex-column">
                 <Link className="text-white-50 py-2 mb-1">Laptops</Link>
                 <Link className="text-white-50 py-2 mb-1">HeadPhones</Link>

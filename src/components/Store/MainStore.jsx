@@ -8,7 +8,7 @@ import gr4 from "../../images/gr4.svg";
 const MainStore = ({  setsort, products }) => {
   const [grid, setgrid] = useState(3);
   return (
-    <div className="col-9 ">
+    <div className="col-9 w100">
       <div className="filter-sort-grid ">
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center gap-10">
@@ -27,8 +27,8 @@ const MainStore = ({  setsort, products }) => {
               <option value="-createdAt">Created, old to new</option>
             </select>
           </div>
-
-          <div className="grid d-flex align-items-center  gap-1">
+ 
+          <div className="grid dno d-flex align-items-center  gap-1">
             <p className="totalProducts mb-0">{products?.length} Products</p>
             <div className="d-flex gap-10 align-items-center">
               <img
@@ -67,6 +67,7 @@ const MainStore = ({  setsort, products }) => {
               />
             </div>
           </div>
+
         </div>
         <div className="products-list d-flex flex-wrap pb-2">
           {products?.map((product, index) => (
