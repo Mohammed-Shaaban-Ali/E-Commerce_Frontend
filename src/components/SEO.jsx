@@ -6,6 +6,7 @@ const SEO = ({ title }) => {
     <Helmet>
       <meta charSet="utf-8" />
       <title>{title}</title>
+      
     </Helmet>
   );
 };

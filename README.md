@@ -1,70 +1,84 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# E-Commerce (MERN Stack)
 
-## Available Scripts
+This project is divided into two parts: User and Admin.
 
-In the project directory, you can run:
 
-### `npm start`
+![mockuo](/public/smartmockupslu719qrs.jpg)
+## User Features
+- **Secure Authentication and Authorization**: Ensures user data is protected.
+- **Profile Updates**: Users can update their personal information.
+- **Password Recovery**: Facilitates password reset and recovery.
+- **Wishlist and Cart Management**: Users can manage their wishlist and shopping cart.
+- **Payment Processing**: Secure payment gateway integration.
+- **Product Filtering**: Users can filter products by category, color, and brand.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Admin Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Comprehensive Dashboard**: Manage all aspects of the e-commerce platform.
+  - **Brands Management**
+  - **Colors Management**
+  - **Products Management**
+  - **Blogs Management**
+  - **Coupons Management**
+- **Order Management**: Track and manage customer orders.
+- **Message Tracking**: Monitor and respond to customer messages.
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend**
+  - React-Redux
+  - Axios
+  - React-Router-Dom
+  - React-Toastify
+  - React-Bootstrap
+  - React-Helmet
+  - Cloudinary
+  - Swiper
+  - Formik
+  - Yup
 
-### `npm run build`
+- **Backend**
+  - Node.js
+  - Express.js
+  - MongoDB
+  - Bcryptjs
+  - Multer
+  - Compression
+  - Uniqid
+  - Body-Parser
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To get started with the project, follow these steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**
+   \`\`\`bash
+   git clone https://github.com/Mohammed-Shaaban-Ali/E-Commerce_Frontend.git
+   \`\`\`
 
-### `npm run eject`
+2. **Install dependencies**
+   \`\`\`bash
+   cd e-commerce
+   npm install
+   \`\`\`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Set up Environment Variables**
+   - Update the \`.env\` file with your configuration.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Run the application**
+   \`\`\`bash
+   npm start
+   \`\`\`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributing
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project is licensed under the MIT License.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contact
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you have any questions or suggestions, feel free to contact me at [your-email@example.com](mailto:your-email@example.com).
